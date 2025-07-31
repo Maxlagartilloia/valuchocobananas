@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALÚ Chocobananas - Tu Rincón del Sabor en Shushufindi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Vibrant gradient background */
+            background: linear-gradient(135deg, #FFFDE7 0%, #FFF3E0 100%);
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        /* Animated Floating Background Container */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Individual floating shapes */
+        .floating-bg span {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(245, 124, 0, 0.6); /* Brand Orange */
+            animation: float-up 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+
+        /* Variations for floating shapes */
+        .floating-bg span:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; background-color: rgba(46, 125, 50, 0.5); }
+        .floating-bg span:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .floating-bg span:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .floating-bg span:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; background-color: rgba(255, 234, 0, 0.6); }
+        .floating-bg span:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .floating-bg span:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background-color: rgba(61, 43, 31, 0.4); }
+        .floating-bg span:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .floating-bg span:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .floating-bg span:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; background-color: rgba(46, 125, 50, 0.6); }
+        .floating-bg span:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        /* Keyframe animation for floating effect */
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 50%;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Floating card style for sections */
+        .floating-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Floating text effect */
+        .floating-text {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Brand Colors */
+        .brand-green-text { color: #1B5E20; }
+        .brand-orange-text { color: #E65100; }
+        .brand-brown-text { color: #3D2B1F; }
+        .bg-brand-green { background-color: #2E7D32; }
+        .bg-brand-orange { background-color: #F57C00; }
+        .bg-brand-brown { background-color: #3D2B1F; }
+        .hover\:bg-brand-green-dark:hover { background-color: #1B5E20; }
+        .hover\:bg-brand-orange-dark:hover { background-color: #E65100; }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Animated Background -->
+    <div class="floating-bg">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-48">
+                <div class="text-2xl font-bold brand-green-text">
+                    VALÚ <span class="brand-orange-text">Chocobananas</span>
+                </div>
+            </div>
+            <a href="https://wa.me/593960499387" target="_blank" class="hidden md:block bg-brand-green text-white font-bold py-2 px-4 rounded-full hover:bg-brand-green-dark transition duration-300">
+                <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 floating-text brand-brown-text">Más que un postre, una experiencia.</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto brand-brown-text">Te esperamos en nuestro ambiente confortable que huele riquísimo. Descubre una amplia carta de chocobananas que no sabrás cuál elegir.</p>
+            <a href="https://wa.me/593960499387" target="_blank" class="bg-brand-orange text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-brand-orange-dark transition duration-300 shadow-lg hover:shadow-xl">
+                ¡Pide Ahora!
+            </a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="floating-card p-8 text-center">
+                    <div class="bg-brand-green text-white rounded-full p-5 mb-4 inline-block">
+                        <i class="fas fa-couch fa-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Ambiente Acogedor</h3>
+                    <p>Disfruta en nuestro rincón amplio, confortable y perfecto para compartir.</p>
+                </div>
+                <!-- Benefit 2 -->
+                <div class="floating-card p-8 text-center">
+                    <div class="bg-brand-orange text-white rounded-full p-5 mb-4 inline-block">
+                        <i class="fas fa-book-open fa-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Variedad Increíble</h3>
+                    <p>Una amplia y variada carta de chocobananas con opciones para todos los gustos.</p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="floating-card p-8 text-center">
+                    <div class="bg-brand-green text-white rounded-full p-5 mb-4 inline-block">
+                        <i class="fas fa-star fa-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Experiencia Sensorial</h3>
+                    <p>Un lugar que no solo se ve bien, sino que además ¡huele riquísimo!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="floating-card p-8 md:p-12 md:flex items-center gap-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img 
+                        src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/522644453_1330666818690196_6211870659271154166_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=J7PColix9oUQ7kNvwHrJgCt&_nc_oc=AdkEIKzeC8PV5t-i31Jn-FmnYoOUrYWyxmqJXlH7TLl6_wFW9_9946FIEq3I6xAan-8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=P5lVp-3c9cnxn8HF1EI20A&oh=00_AfSP3oiZpjd3WEbksEAAtuWK4UaksGis-FjG-31rW7r3wg&oe=68903D1A" 
+                        alt="Frente del local de VALÚ Chocobananas" 
+                        class="rounded-lg shadow-xl w-full h-auto"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/3D2B1F/FFFFFF?text=Nuestro+Local';">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4 brand-green-text floating-text">¡Hola, somos <span class="brand-orange-text">VALÚ Chocobananas!</span></h2>
+                    <p class="mb-4">Tu rincón favorito en el corazón de Shushufindi. Nacimos para convertir un postre clásico en una experiencia inolvidable. Nos enorgullece ofrecerte la más amplia y deliciosa carta de chocobananas que puedas imaginar, ¡te aseguramos que no sabrás cuál elegir!.</p>
+                    <p>Más que solo un producto, queremos que te sientas como en casa. Por eso, hemos creado un espacio amplio, confortable y con un ambiente súper acogedor. Te esperamos de lunes a sábado para que compartas un momento dulce y divertido. ¡Somos el punto de encuentro perfecto para todos los "Valú Lovers"!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Nuestros Sabores Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center brand-brown-text floating-text">Nuestros Sabores</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Flavor 1 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484871538_1227465182343694_2193047465101740988_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wc4pZKcUCvMQ7kNvwFPVWFQ&_nc_oc=AdkHUIfQXJ6CZfpNSj0mHtV8mBxZDDpnoGGD_OdTvI7fnaoGPwjtpikmfsngIUwBI0s&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=GTI_DXxEDZVzTCsU--r0tw&oh=00_AfQiux8PZqYzrNL90_ohSkU6a3PtKSW4HfIJK5cgTQ6NUQ&oe=68902B74" alt="Chocobanana con maní" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Crujiente de Maní</h3>
+                        <p class="text-sm">La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 2 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484914242_1227465325677013_348128831994359855_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=EvXd8qNVm6wQ7kNvwFo43Xg&_nc_oc=AdnVSVSVtWqjLAwXryj0eUsYthsm2FCarSjdgI2n7Imz1-fzl1KTBiE2UjyJkbGmscA&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=s9G2D6XrO5MblGXCshinLw&oh=00_AfTs1QRFGBo2k4g1Vnw2-0aZjGzfeSwIzXZ9t_kzWD-C0w&oe=689034F8" alt="Chocobanana con chispas de colores" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Fiesta de Chispas</h3>
+                        <p class="text-sm">Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 3 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484906519_1227465379010341_1081647490030879274_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=oRjYTO4PJN0Q7kNvwFmBgOI&_nc_oc=Adk6675GgDxjNYkvuE3KNir1fEGmMxFW8hiEIAI5av5bxsR7VFk2fT_afgZrysGntMw&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=TD4Xe-5J939WpBAzDRqeuw&oh=00_AfT6-tyIHrE0ltzO5yjR-nO3Rnn5NX76bPHkC8HY0F9-4Q&oe=68905A36" alt="Chocobanana con cobertura de chocolate blanco y chispas" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Sueño Blanco</h3>
+                        <p class="text-sm">Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 4 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484916770_1227465032343709_9001589494754314199_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=okHINENg9xMQ7kNvwHK9lJS&_nc_oc=AdncCB-DpD3HLK7eEEyTdC9Mq41p1RI0lrOIspAo-1tcGftC3gO-ZILFVeJ6nX4VuLg&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=W5ZYv3JufcBVm2Dg6eANcQ&oh=00_AfRlRycYSpAJLCYY1_6Zxs2P8gKQayNxL3wnSknlbx1zNg&oe=689050BF" alt="Chocobanana con galleta" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Galleta Manía</h3>
+                        <p class="text-sm">Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 5 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484915137_1227465422343670_5327948537746167589_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=K7-9dehzA98Q7kNvwFbV5Qw&_nc_oc=AdlCCogQ2GyjxMbkv4Z1_6TCY7FI5_54zmSIAttv6BdxOAQtSCeYVzzEnK8NlcuTL_8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=Ky4nW8s7tZ2Y9lDFaFLQYQ&oh=00_AfQa5K9Am2b2_xMZqTmTLLBK3KUv2eAs0F-M_dK5J-7-UA&oe=68905787" alt="Chocobanana con chispas de chocolate" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Choco-Chispas</h3>
+                        <p class="text-sm">Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                 <!-- Flavor 6 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484896815_1227465169010362_1682943187041797848_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=UzhGC-cK45UQ7kNvwFf3Fvv&_nc_oc=AdmC0Z973_lkScKHFwWDka3T3U5xWjUJvyyYZ8Zvc1HlS7-KIv-enhXhUNsC4Ik6YjI&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=socE4pIAGTM60HxD4HT17A&oh=00_AfR0qqEpzNeHWQR6IQZ-Ewia3hoRgGTzFlga0es4MWjcjQ&oe=6890485E" alt="Chocobanana con coco rallado" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Nieve de Coco</h3>
+                        <p class="text-sm">Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 7 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484903805_1227465112343701_1746686302863135978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MTAzjQ0mteQQ7kNvwFy-9y2&_nc_oc=AdnJsv8gf8DTUf6Z9Ui7RKbcMeslQKzUt7eSwV0KnHMw_7HQHTvzkUVhpy1u6CSgV4c&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=jkAiD3opwDY8cX6FOhNliw&oh=00_AfQeybp95sHUdJhWRBwET7EM9jRawOz1y-DXztCpk5LQ2g&oe=68902752" alt="Chocobanana con decorado de corazón" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Corazón de Amor</h3>
+                        <p class="text-sm">El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 8 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484902931_1227465385677007_5457625106616282100_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YQ5DnQLzk6QQ7kNvwGj1ACc&_nc_oc=AdmBe7q-9w8XFJuMu28BcEJZeTV8HVz-NSGiLZtXkgLV98DkaIrqhLjisZ-X9A7mSpI&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=3FR95Tr-Dea3hLwGRuvQKA&oh=00_AfQ8hArzgKHjt1PXltkr5AstrHtKx48fSP5DQWsRBLrg9A&oe=68904D86" alt="Chocobanana con decorado de chocolate blanco" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Doble Chocolate</h3>
+                        <p class="text-sm">Base de chocolate oscuro con un elegante decorado de chocolate blanco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+                <!-- Flavor 9 -->
+                <div class="floating-card text-center overflow-hidden">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484901512_1227465402343672_6270354624823327856_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=baocqElflvMQ7kNvwFzvTW-&_nc_oc=Adl7xpdcBsecjPGjjFMIXItqfc5pw99N70bp3vYe9HOOMIEHqaXCL5VA5YYeKDSTnro&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=cIr8omJ-ndpqNvuShlj_oQ&oh=00_AfTLY3i6MRtHpxbvAdbKeXJ5t5Z-v84fYvyMMGUck_AR9g&oe=68903F60" alt="Chocobanana con arroz inflado" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">Explosión Crujiente</h3>
+                        <p class="text-sm">Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="bg-brand-green text-white rounded-2xl p-12 text-center shadow-2xl">
+                <h2 class="text-3xl font-bold mb-4 floating-text">¿Listo para tu antojo?</h2>
+                <p class="text-lg mb-8">Contáctanos por WhatsApp o visítanos hoy mismo. ¡Te esperamos!</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                    <a href="https://wa.me/593960499387" target="_blank" class="bg-brand-orange text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-brand-orange-dark transition duration-300 w-full md:w-auto shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+                    </a>
+                     <a href="#footer-contact" class="bg-white text-brand-green-text font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300 w-full md:w-auto shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <i class="fas fa-map-marker-alt"></i> Ver Ubicación
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-contact" class="bg-brand-brown text-yellow-50 pt-12 pb-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Contact Info -->
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Contacto</h4>
+                    <p><i class="fab fa-whatsapp mr-2"></i> 096 049 9387</p>
+                    <p><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p>
+                </div>
+                <!-- Location -->
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto</p>
+                    <p>Shushufindi, Ecuador</p>
+                </div>
+                <!-- Hours -->
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Horario</h4>
+                    <p>Lunes a Sábado</p>
+                    <p>3:00 PM - 7:30 PM</p>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/20 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-sm text-white/70 mb-4 sm:mb-0">&copy; 2024 VALÚ Chocobananas. Todos los derechos reservados.</p>
+                <div>
+                    <a href="https://www.facebook.com/valuchocobananas" target="_blank" class="text-white/70 hover:text-white mx-2 text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/valuchocobananasoficial" target="_blank" class="text-white/70 hover:text-white mx-2 text-xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
