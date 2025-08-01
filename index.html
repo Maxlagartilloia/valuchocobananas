@@ -333,9 +333,8 @@
             // --- Check for Firebase Config before doing anything ---
             if (typeof __firebase_config === 'undefined' || typeof __app_id === 'undefined') {
                 console.error("Error: La configuración de Firebase no está disponible.");
-                // Opcional: Deshabilitar visualmente la funcionalidad de pedidos
                 document.querySelectorAll('[data-flavor]').forEach(card => card.style.cursor = 'not-allowed');
-                return; // Detener la ejecución si la configuración no está
+                return; 
             }
 
             // --- Configuración de Firebase ---
@@ -432,10 +431,7 @@
             document.querySelectorAll('[data-flavor]').forEach(card => {
                 card.addEventListener('click', () => {
                     if (!tableNumber) {
-                        // Si no hay número de mesa, no hacemos nada.
-                        // El cursor se cambiará a 'not-allowed' si la config de Firebase falla.
-                        // Podemos añadir un aviso visual si se desea.
-                        console.log("Modo solo vista. Escanea un QR para ordenar.");
+                        alert("Para ordenar, por favor escanea el código QR que se encuentra en tu mesa.");
                         return;
                     }
                     const flavor = card.getAttribute('data-flavor');
