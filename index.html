@@ -329,18 +329,26 @@
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // --- INSTRUCCIÓN IMPORTANTE: PEGA TU CÓDIGO DE CONFIGURACIÓN DE FIREBASE AQUÍ ---
+        const firebaseConfig = {
+          apiKey: "AIzaSyDJLkfr2JP_vf3VhbDhuwwF41-lorFTo7c",
+          authDomain: "valu-chocobananas.firebaseapp.com",
+          projectId: "valu-chocobananas",
+          storageBucket: "valu-chocobananas.firebasestorage.app",
+          messagingSenderId: "552446622989",
+          appId: "1:552446622989:web:bf83fc1c105285ba51cbd4",
+          measurementId: "G-J131S7LZNW"
+        };
+
+        // --- El resto del script se encarga de todo automáticamente ---
+        
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Check for Firebase Config before doing anything ---
-            if (typeof __firebase_config === 'undefined' || typeof __app_id === 'undefined') {
-                console.error("Error: La configuración de Firebase no está disponible.");
+            if (!firebaseConfig.apiKey) {
+                console.error("Error: La configuración de Firebase no se ha añadido al archivo index.html.");
                 document.querySelectorAll('[data-flavor]').forEach(card => card.style.cursor = 'not-allowed');
-                return; 
+                return;
             }
 
-            // --- Configuración de Firebase ---
-            const firebaseConfig = JSON.parse(__firebase_config);
-            const appId = __app_id;
-            
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
             const auth = getAuth(app);
@@ -350,7 +358,6 @@
             let selectedFlavor = null;
             let selectedPrice = null;
 
-            // --- Autenticación y Lógica de la Página ---
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log("Usuario autenticado anónimamente:", user.uid);
@@ -367,7 +374,6 @@
                 }
             }
             
-            // --- Lógica de Pedidos ---
             function getTableNumber() {
                 const params = new URLSearchParams(window.location.search);
                 return params.get('table');
@@ -380,7 +386,7 @@
                 }
 
                 try {
-                    const ordersCollection = collection(db, `/artifacts/${appId}/public/data/orders`);
+                    const ordersCollection = collection(db, `orders`);
                     await addDoc(ordersCollection, {
                         table: `${tableNumber}`,
                         flavor: flavor,
@@ -396,7 +402,6 @@
                 }
             }
 
-            // --- Manejo de Modales ---
             const nameModal = document.getElementById('name-modal');
             const confirmationModal = document.getElementById('confirmation-modal');
             const customerNameInput = document.getElementById('customer-name');
@@ -418,7 +423,6 @@
                 confirmationModal.classList.add('visible');
             }
             
-            // --- Event Listeners ---
             signIn();
             tableNumber = getTableNumber();
             const menuTitle = document.getElementById('menu-title');
