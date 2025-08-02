@@ -76,15 +76,25 @@
         import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, query, onSnapshot, doc, updateDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // --- TU CONFIGURACIÓN PERSONAL DE FIREBASE ---
+        const firebaseConfig = {
+          apiKey: "AIzaSyDJLkfr2JP_vf3VhbDhuwwF41-lorFTo7c",
+          authDomain: "valu-chocobananas.firebaseapp.com",
+          projectId: "valu-chocobananas",
+          storageBucket: "valu-chocobananas.firebasestorage.app",
+          messagingSenderId: "552446622989",
+          appId: "1:552446622989:web:bf83fc1c105285ba51cbd4",
+          measurementId: "G-J131S7LZNW"
+        };
+
+        // --- El resto del script se encarga de todo automáticamente ---
+
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof __firebase_config === 'undefined' || typeof __app_id === 'undefined') {
-                console.error("Error: La configuración de Firebase no está disponible.");
+            if (!firebaseConfig.apiKey) {
+                console.error("Error: La configuración de Firebase no está presente.");
                 document.body.innerHTML = '<div class="text-center p-8 bg-red-100 text-red-700">Error: La configuración de Firebase no está disponible. No se pueden cargar los pedidos.</div>';
                 return;
             }
-
-            const firebaseConfig = JSON.parse(__firebase_config);
-            const appId = __app_id;
             
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
@@ -120,7 +130,7 @@
             signInAnonymously(auth).catch(error => console.error("Error al iniciar sesión:", error));
 
             function listenForOrders() {
-                const ordersRef = collection(db, `/artifacts/${appId}/public/data/orders`);
+                const ordersRef = collection(db, "orders");
                 const q = query(ordersRef);
 
                 onSnapshot(q, (snapshot) => {
@@ -207,7 +217,7 @@
 
                 card.querySelector('.complete-btn').addEventListener('click', async (e) => {
                     const orderId = e.target.getAttribute('data-id');
-                    const orderDocRef = doc(db, `/artifacts/${appId}/public/data/orders`, orderId);
+                    const orderDocRef = doc(db, "orders", orderId);
                     await updateDoc(orderDocRef, { status: "completed" });
                 });
             }
@@ -283,7 +293,7 @@
                 const ordersToArchive = allTodaysOrders.filter(order => order.status === 'completed');
                 
                 ordersToArchive.forEach(order => {
-                    const orderDocRef = doc(db, `/artifacts/${appId}/public/data/orders`, order.id);
+                    const orderDocRef = doc(db, "orders", order.id);
                     batch.update(orderDocRef, { status: "archived" });
                 });
                 
