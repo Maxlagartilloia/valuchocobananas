@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedir 🍌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;max-width:520px;margin:0 auto;padding:24px}
+    h1{margin:0 0 12px}
+    label{display:block;margin:12px 0 6px}
+    input,select,button{font-size:18px;padding:10px;width:100%}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ok{padding:12px;border:1px solid #0a0;margin-top:16px;display:none}
+  </style>
+</head>
+<body>
+  <h1>Haz tu pedido</h1>
+  <div id="mesaInfo"></div>
+
+  <form id="f" method="POST" action="WEB_APP_URL_AQUI">
+    <input type="hidden" name="mesa" id="mesa">
+    <input type="hidden" name="redirect" value="https://TU_USUARIO.github.io/TU_REPO/gracias.html">
+
+    <label>Sabor</label>
+    <select name="sabor" required>
+      <option value="" disabled selected>Selecciona sabor</option>
+      <option value="chocobanana">Chocobanana</option>
+      <option value="fresa">Fresa</option>
+      <option value="vainilla">Vainilla</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label>Cantidad</label>
+        <input type="number" name="cantidad" min="1" value="1" required>
+      </div>
+      <div>
+        <label>Tu nombre (opcional)</label>
+        <input type="text" name="nombre" maxlength="50">
+      </div>
+    </div>
+
+    <button type="submit">Enviar pedido</button>
+  </form>
+
+  <script>
+    // Lee ?mesa= del QR y lo guarda
+    const qs = new URLSearchParams(location.search);
+    const mesa = qs.get('mesa') || '';
+    document.getElementById('mesa').value = mesa;
+    document.getElementById('mesaInfo').textContent = mesa ? `Mesa: ${mesa}` : 'Mesa: (no detectada)';
+    // Reemplaza action con tu URL real
+    document.getElementById('f').action = 'WEB_APP_URL_AQUI';
+  </script>
+</body>
+</html>
