@@ -136,20 +136,23 @@
         /* Modal Styles */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
         .modal-overlay.visible { opacity: 1; visibility: visible; }
-        .modal-content { background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 400px; text-align: center; }
+        .modal-content { background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 400px; text-align: center; transform: scale(0.95); transition: transform 0.3s; }
+        .modal-overlay.visible .modal-content { transform: scale(1); }
 
     </style>
 </head>
 <body class="text-gray-800">
 
+    <!-- This div creates the animated background with floating shapes -->
     <div class="floating-bg">
         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
 
+    <!-- Header section with the logo and brand name -->
     <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-2 flex justify-center items-center">
             <div class="flex items-center gap-3">
-                <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-24 md:h-48">
+                <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-24 md:h-48" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFF3E0/3D2B1F?text=VALÚ';">
                 <div class="text-2xl md:text-3xl font-bold brand-green-text">
                     VALÚ <span class="brand-orange-text">Chocobananas</span>
                 </div>
@@ -157,6 +160,7 @@
         </div>
     </header>
 
+    <!-- Sub-header bar with slogan and social media links -->
     <section class="bg-brand-brown py-3 shadow-lg">
         <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-yellow-50 text-center sm:text-left">
             <p class="text-sm font-semibold mb-2 sm:mb-0">El Sabor que te Encanta, la Calidad que nos Define.</p>
@@ -167,6 +171,7 @@
         </div>
     </section>
 
+    <!-- Hero section with main headline -->
     <section class="py-20 md:py-24">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 floating-text brand-brown-text">Más que un postre, una experiencia.</h1>
@@ -174,6 +179,7 @@
         </div>
     </section>
 
+    <!-- Features section with three key points -->
     <section class="pb-16">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8">
@@ -196,11 +202,12 @@
         </div>
     </section>
 
+    <!-- About Us section -->
     <section class="pb-16">
         <div class="container mx-auto px-6">
             <div class="floating-card p-8 md:p-12 md:flex items-center gap-12">
                 <div class="md:w-1/2 mb-8 md:mb-0">
-                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/522644453_1330666818690196_6211870659271154166_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=J7PColix9oUQ7kNvwHrJgCt&_nc_oc=AdkEIKzeC8PV5t-i31Jn-FmnYoOUrYWyxmqJXlH7TLl6_wFW9_9946FIEq3I6xAan-8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=P5lVp-3c9cnxn8HF1EI20A&oh=00_AfSP3oiZpjd3WEbksEAAtuWK4UaksGis-FjG-31rW7r3wg&oe=68903D1A" alt="Frente del local de VALÚ Chocobananas" class="rounded-lg shadow-xl w-full h-auto">
+                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/522644453_1330666818690196_6211870659271154166_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=J7PColix9oUQ7kNvwHrJgCt&_nc_oc=AdkEIKzeC8PV5t-i31Jn-FmnYoOUrYWyxmqJXlH7TLl6_wFW9_9946FIEq3I6xAan-8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=P5lVp-3c9cnxn8HF1EI20A&oh=00_AfSP3oiZpjd3WEbksEAAtuWK4UaksGis-FjG-31rW7r3wg&oe=68903D1A" alt="Frente del local de VALÚ Chocobananas" class="rounded-lg shadow-xl w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Local';">
                 </div>
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold mb-4 brand-green-text floating-text">¡Hola, somos <span class="brand-orange-text">VALÚ Chocobananas!</span></h2>
@@ -211,23 +218,28 @@
         </div>
     </section>
     
+    <!-- Menu section with product cards -->
     <section class="pb-16">
         <div class="container mx-auto px-6">
             <h2 id="menu-title" class="text-3xl font-bold mb-12 text-center brand-brown-text floating-text">Nuestros Sabores</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Crujiente de Maní" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484871538_1227465182343694_2193047465101740988_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wc4pZKcUCvMQ7kNvwFPVWFQ&_nc_oc=AdkHUIfQXJ6CZfpNSj0mHtV8mBxZDDpnoGGD_OdTvI7fnaoGPwjtpikmfsngIUwBI0s&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=GTI_DXxEDZVzTCsU--r0tw&oh=00_AfQiux8PZqYzrNL90_ohSkU6a3PtKSW4HfIJK5cgTQ6NUQ&oe=68902B74" alt="Chocobanana con maní" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Crujiente de Maní</h3><p class="text-sm">La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Fiesta de Chispas" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484914242_1227465325677013_348128831994359855_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=EvXd8qNVm6wQ7kNvwFo43Xg&_nc_oc=AdnVSVSVtWqjLAwXryj0eUsYthsm2FCarSjdgI2n7Imz1-fzl1KTBiE2UjyJkbGmscA&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=s9G2D6XrO5MblGXCshinLw&oh=00_AfTs1QRFGBo2k4g1Vnw2-0aZjGzfeSwIzXZ9t_kzWD-C0w&oe=689034F8" alt="Chocobanana con chispas de colores" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Fiesta de Chispas</h3><p class="text-sm">Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Sueño Blanco" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484906519_1227465379010341_1081647490030879274_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=oRjYTO4PJN0Q7kNvwFmBgOI&_nc_oc=Adk6675GgDxjNYkvuE3KNir1fEGmMxFW8hiEIAI5av5bxsR7VFk2fT_afgZrysGntMw&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=TD4Xe-5J939WpBAzDRqeuw&oh=00_AfT6-tyIHrE0ltzO5yjR-nO3Rnn5NX76bPHkC8HY0F9-4Q&oe=68905A36" alt="Chocobanana con cobertura de chocolate blanco y chispas" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Sueño Blanco</h3><p class="text-sm">Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Galleta Manía" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484916770_1227465032343709_9001589494754314199_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=okHINENg9xMQ7kNvwHK9lJS&_nc_oc=AdncCB-DpD3HLK7eEEyTdC9Mq41p1RI0lrOIspAo-1tcGftC3gO-ZILFVeJ6nX4VuLg&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=W5ZYv3JufcBVm2Dg6eANcQ&oh=00_AfRlRycYSpAJLCYY1_6Zxs2P8gKQayNxL3wnSknlbx1zNg&oe=689050BF" alt="Chocobanana con galleta" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Galleta Manía</h3><p class="text-sm">Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Choco-Chispas" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484915137_1227465422343670_5327948537746167589_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=K7-9dehzA98Q7kNvwFbV5Qw&_nc_oc=AdlCCogQ2GyjxMbkv4Z1_6TCY7FI5_54zmSIAttv6BdxOAQtSCeYVzzEnK8NlcuTL_8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=Ky4nW8s7tZ2Y9lDFaFLQYQ&oh=00_AfQa5K9Am2b2_xMZqTmTLLBK3KUv2eAs0F-M_dK5J-7-UA&oe=68905787" alt="Chocobanana con chispas de chocolate" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Choco-Chispas</h3><p class="text-sm">Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Nieve de Coco" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484896815_1227465169010362_1682943187041797848_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=UzhGC-cK45UQ7kNvwFf3Fvv&_nc_oc=AdmC0Z973_lkScKHFwWDka3T3U5xWjUJvyyYZ8Zvc1HlS7-KIv-enhXhUNsC4Ik6YjI&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=socE4pIAGTM60HxD4HT17A&oh=00_AfR0qqEpzNeHWQR6IQZ-Ewia3hoRgGTzFlga0es4MWjcjQ&oe=6890485E" alt="Chocobanana con coco rallado" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Nieve de Coco</h3><p class="text-sm">Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Corazón de Amor" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484903805_1227465112343701_1746686302863135978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MTAzjQ0mteQQ7kNvwFy-9y2&_nc_oc=AdnJsv8gf8DTUf6Z9Ui7RKbcMeslQKzUt7eSwV0KnHMw_7HQHTvzkUVhpy1u6CSgV4c&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=jkAiD3opwDY8cX6FOhNliw&oh=00_AfQeybp95sHUdJhWRBwET7EM9jRawOz1y-DXztCpk5LQ2g&oe=68902752" alt="Chocobanana con decorado de corazón" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Corazón de Amor</h3><p class="text-sm">El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Doble Chocolate" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484902931_1227465385677007_5457625106616282100_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YQ5DnQLzk6QQ7kNvwGj1ACc&_nc_oc=AdmBe7q-9w8XFJuMu28BcEJZeTV8HVz-NSGiLZtXkgLV98DkaIrqhLjisZ-X9A7mSpI&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=3FR95Tr-Dea3hLwGRuvQKA&oh=00_AfQ8hArzgKHjt1PXltkr5AstrHtKx48fSP5DQWsRBLrg9A&oe=68904D86" alt="Chocobanana con decorado de chocolate blanco" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Doble Chocolate</h3><p class="text-sm">Base de chocolate oscuro con un elegante decorado de chocolate blanco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Explosión Crujiente" data-price="1.00"><img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/484901512_1227465402343672_6270354624823327856_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=baocqElflvMQ7kNvwFzvTW-&_nc_oc=Adl7xpdcBsecjPGjjFMIXItqfc5pw99N70bp3vYe9HOOMIEHqaXCL5VA5YYeKDSTnro&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=cIr8omJ-ndpqNvuShlj_oQ&oh=00_AfTLY3i6MRtHpxbvAdbKeXJ5t5Z-v84fYvyMMGUck_AR9g&oe=68903F60" alt="Chocobanana con arroz inflado" class="w-full h-56 object-contain bg-white/20 pointer-events-none"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Explosión Crujiente</h3><p class="text-sm">Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <!-- Each card is a menu item, clickable for ordering -->
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Crujiente de Maní" data-price="1.00"><img src="https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp" alt="Chocobanana con maní" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Crujiente+de+Maní';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Crujiente de Maní</h3><p class="text-sm">La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Fiesta de Chispas" data-price="1.00"><img src="https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp" alt="Chocobanana con chispas de colores" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Fiesta+de+Chispas';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Fiesta de Chispas</h3><p class="text-sm">Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Sueño Blanco" data-price="1.00"><img src="https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp" alt="Chocobanana con cobertura de chocolate blanco y chispas" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Sueño+Blanco';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Sueño Blanco</h3><p class="text-sm">Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Galleta Manía" data-price="1.00"><img src="https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp" alt="Chocobanana con galleta" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Galleta+Manía';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Galleta Manía</h3><p class="text-sm">Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Choco-Chispas" data-price="1.00"><img src="https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp" alt="Chocobanana con chispas de chocolate" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Choco-Chispas';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Choco-Chispas</h3><p class="text-sm">Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Nieve de Coco" data-price="1.00"><img src="https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp" alt="Chocobanana con coco rallado" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Nieve+de+Coco';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Nieve de Coco</h3><p class="text-sm">Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Corazón de Amor" data-price="1.00"><img src="https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp" alt="Chocobanana con decorado de corazón" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Corazón+de+Amor';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Corazón de Amor</h3><p class="text-sm">El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Doble Chocolate" data-price="1.00"><img src="https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp" alt="Chocobanana con decorado de chocolate blanco" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Doble+Chocolate';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Doble Chocolate</h3><p class="text-sm">Base de chocolate oscuro con un elegante decorado de chocolate blanco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Explosión Crujiente" data-price="1.00"><img src="https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp" alt="Chocobanana con arroz inflado" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Explosión+Crujiente';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Explosión Crujiente</h3><p class="text-sm">Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Fresa Pasión" data-price="1.00"><img src="https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp" alt="Chocobanana con topping de fresa" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Fresa+Pasión';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Fresa Pasión</h3><p class="text-sm">Una dulce cobertura de chocolate con un toque de fresa y decoraciones románticas. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
+                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Almendra Tostada" data-price="1.00"><img src="https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp" alt="Chocobanana con almendras" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Almendra+Tostada';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Almendra Tostada</h3><p class="text-sm">Chocolate premium cubierto con trocitos de almendra tostada para un sabor sofisticado. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
             </div>
         </div>
     </section>
 
+    <!-- Footer with contact information -->
     <footer id="footer-contact" class="bg-brand-brown text-yellow-50 pt-12 pb-8 mt-16">
         <div class="container mx-auto px-6 text-center">
             <div class="grid md:grid-cols-3 gap-8">
@@ -257,50 +269,68 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp button -->
     <a href="https://wa.me/593989196228?text=¡Hola%20VALÚ%20Chocobananas!%20Quisiera%20hacer%20un%20pedido%20o%20tengo%20una%20consulta." target="_blank" class="floating-whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Modal for collecting customer's name and quantity -->
     <div id="name-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 class="text-2xl font-bold mb-4 brand-brown-text">¡Casi listo!</h2>
-            <p class="mb-4">Para identificar tu pedido, por favor ingresa tu nombre:</p>
-            <input type="text" id="customer-name" class="w-full border-2 border-gray-300 p-2 rounded-lg mb-4" placeholder="Ej: Carlos">
-            <button id="submit-order" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full w-full">Confirmar Pedido</button>
+            <p class="mb-4">Para identificar tu pedido, por favor ingresa tu nombre y la cantidad que deseas.</p>
+            <div class="mb-4">
+                <label for="customer-name" class="block text-left font-semibold mb-1">Tu Nombre:</label>
+                <input type="text" id="customer-name" class="w-full border-2 border-gray-300 p-2 rounded-lg focus:border-brand-orange focus:ring-brand-orange" placeholder="Ej: Carlos">
+            </div>
+            <div class="mb-6">
+                <label for="order-quantity" class="block text-left font-semibold mb-1">Cantidad:</label>
+                <input type="number" id="order-quantity" value="1" min="1" max="20" class="w-full border-2 border-gray-300 p-2 rounded-lg focus:border-brand-orange focus:ring-brand-orange">
+            </div>
+            <button id="submit-order" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-orange-dark transition-colors">Confirmar Pedido</button>
             <button id="cancel-order" class="text-gray-500 mt-2">Cancelar</button>
         </div>
     </div>
     
+    <!-- Modal for order confirmation -->
     <div id="confirmation-modal" class="modal-overlay">
          <div class="modal-content">
             <h2 class="text-2xl font-bold mb-4 brand-green-text">¡Pedido Enviado!</h2>
             <p id="confirmation-message" class="mb-4">Tu chocobanana llegará a tu mesa en un momento.</p>
-            <button id="close-confirmation" class="bg-brand-green text-white font-bold py-2 px-6 rounded-full w-full">¡Genial!</button>
+            <button id="close-confirmation" class="bg-brand-green text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-green-dark transition-colors">¡Genial!</button>
+        </div>
+    </div>
+    
+    <!-- Generic Alert Modal to replace native alert() -->
+    <div id="alert-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="alert-modal-title" class="text-2xl font-bold mb-4 brand-orange-text"></h2>
+            <p id="alert-modal-message" class="mb-6"></p>
+            <button id="close-alert-modal" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-orange-dark transition-colors">Entendido</button>
         </div>
     </div>
 
+
     <script type="module">
+        // Import Firebase services
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = {
-          apiKey: "AIzaSyDJLkfr2JP_vf3VhbDhuwwF41-lorFTo7c",
-          authDomain: "valu-chocobananas.firebaseapp.com",
-          projectId: "valu-chocobananas",
-          storageBucket: "valu-chocobananas.firebasestorage.app",
-          messagingSenderId: "552446622989",
-          appId: "1:552446622989:web:bf83fc1c105285ba51cbd4",
-          measurementId: "G-J131S7LZNW"
-        };
-        
         document.addEventListener('DOMContentLoaded', () => {
-            if (!firebaseConfig.apiKey) {
-                console.error("Error: La configuración de Firebase no está presente.");
+            // Securely initialize Firebase using environment variables
+            if (typeof __firebase_config === 'undefined' || typeof __app_id === 'undefined') {
+                console.error("Error: Firebase configuration or App ID is missing.");
+                // Disable ordering functionality if Firebase isn't configured
                 document.querySelectorAll('[data-flavor]').forEach(card => card.style.cursor = 'not-allowed');
+                showAlertModal('Error de Configuración', 'El sistema de pedidos no está disponible en este momento. Por favor, avisa al personal.');
                 return;
             }
+            
+            const firebaseConfig = JSON.parse(__firebase_config);
+            const appId = __app_id;
 
+            // Initialize Firebase App
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
             const auth = getAuth(app);
@@ -310,48 +340,102 @@
             let selectedFlavor = null;
             let selectedPrice = null;
 
+            // Handle authentication state changes
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    console.log("Usuario autenticado anónimamente:", user.uid);
+                    console.log("User authenticated:", user.uid);
                     dbReady = true;
+                } else {
+                    console.log("User is not authenticated. Attempting to sign in.");
+                    signIn(); // Attempt to sign in if the user is not authenticated
                 }
             });
 
+            // Sign in the user, preferring a custom token if available
             async function signIn() {
                 if (auth.currentUser) return;
-                try { await signInAnonymously(auth); } catch (error) { console.error("Error al iniciar sesión anónimamente:", error); }
+                try {
+                    if (typeof __initial_auth_token !== 'undefined') {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (error) {
+                    console.error("Authentication Error:", error);
+                    showAlertModal('Error de Autenticación', 'No se pudo verificar la sesión. Por favor, recarga la página.');
+                }
             }
             
+            // Get table number from URL parameters
             function getTableNumber() {
                 const params = new URLSearchParams(window.location.search);
                 return params.get('table');
             }
 
-            async function sendOrder(flavor, price, customerName) {
-                if (!dbReady || !tableNumber) { return; }
-                try {
-                    const ordersCollection = collection(db, `orders`);
-                    await addDoc(ordersCollection, {
-                        table: `${tableNumber}`,
-                        flavor: flavor,
-                        price: price,
-                        customer: customerName,
-                        status: "pending",
-                        timestamp: serverTimestamp()
-                    });
-                    showConfirmationModal(`¡Gracias, ${customerName}! Tu pedido de <strong>${flavor}</strong> va en camino a la <strong>Mesa ${tableNumber}</strong>.`);
-                } catch (error) {
-                    console.error("Error al enviar el pedido: ", error);
+            // Send order data to Firestore and Webhook
+            async function sendOrder(flavor, price, customerName, quantity) {
+                if (!dbReady || !tableNumber || !appId) {
+                    showAlertModal('Error de Conexión', 'No se pudo conectar con el sistema. Por favor, refresca la página o contacta al personal.');
+                    return;
                 }
+
+                // 1. Prepare the order data for both Firestore and the webhook
+                const orderData = {
+                    table: `${tableNumber}`,
+                    flavor: flavor,
+                    price: price,
+                    customer: customerName,
+                    quantity: quantity,
+                    status: "pending",
+                    timestamp: new Date().toISOString() // Use a consistent ISO string timestamp
+                };
+
+                // 2. Send data to Firestore
+                try {
+                    const ordersCollection = collection(db, `artifacts/${appId}/public/data/orders`);
+                    // Firestore will use its own server-side timestamp for accuracy
+                    await addDoc(ordersCollection, { ...orderData, timestamp: serverTimestamp() });
+                    console.log("Order successfully saved to Firestore.");
+                } catch (error) {
+                    console.error("Error sending order to Firestore: ", error);
+                    showAlertModal('Error de Pedido', 'Hubo un problema al guardar tu pedido. Por favor, inténtalo de nuevo.');
+                    return; // Stop if saving to the database fails
+                }
+
+                // 3. Send data to the dispatch webhook
+                try {
+                    const webhookUrl = 'https://crissbot-n8n.raf5ac.easypanel.host/webhook/91f9adeb-b0a2-4f40-a7b4-38c0508d9ecf';
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(orderData),
+                    });
+                    console.log("Order notification successfully sent to webhook.");
+                } catch (error) {
+                    console.error("Error sending webhook notification: ", error);
+                    // Do not show an error to the user here, as the order was placed successfully.
+                    // This is a background notification failure.
+                }
+                
+                // 4. Show confirmation to the user
+                const plural = quantity > 1 ? 's' : '';
+                showConfirmationModal(`¡Gracias, ${customerName}! Tu pedido de <strong>${quantity} chocobanana${plural} de ${flavor}</strong> va en camino a la <strong>Mesa ${tableNumber}</strong>.`);
             }
 
+            // Get references to all modal elements
             const nameModal = document.getElementById('name-modal');
             const confirmationModal = document.getElementById('confirmation-modal');
+            const alertModal = document.getElementById('alert-modal');
             const customerNameInput = document.getElementById('customer-name');
+            const quantityInput = document.getElementById('order-quantity');
             
+            // Functions to show/hide modals
             function showNameModal(flavor, price) {
                 selectedFlavor = flavor;
                 selectedPrice = price;
+                quantityInput.value = 1; // Reset quantity to 1 each time
                 nameModal.classList.add('visible');
                 customerNameInput.focus();
             }
@@ -366,6 +450,17 @@
                 confirmationModal.classList.add('visible');
             }
             
+            function showAlertModal(title, message) {
+                document.getElementById('alert-modal-title').textContent = title;
+                document.getElementById('alert-modal-message').textContent = message;
+                alertModal.classList.add('visible');
+            }
+
+            function hideAlertModal() {
+                alertModal.classList.remove('visible');
+            }
+
+            // Initial page setup logic
             signIn();
             tableNumber = getTableNumber();
             const menuTitle = document.getElementById('menu-title');
@@ -374,10 +469,11 @@
                 menuTitle.innerHTML = `MENÚ MESA <span class="brand-orange-text">#${tableNumber}</span> - ¡Elige tu Sabor!`;
             }
 
+            // Add click listeners to all product cards
             document.querySelectorAll('[data-flavor]').forEach(card => {
                 card.addEventListener('click', () => {
                     if (!tableNumber) {
-                        alert("Para ordenar, por favor escanea el código QR que se encuentra en tu mesa.");
+                        showAlertModal('¡Escanea el QR!', 'Para poder ordenar, por favor escanea el código QR que se encuentra en tu mesa.');
                         return;
                     }
                     const flavor = card.getAttribute('data-flavor');
@@ -386,18 +482,29 @@
                 });
             });
 
+            // Add click listeners for all modal buttons
             document.getElementById('submit-order').addEventListener('click', () => {
                 const customerName = customerNameInput.value.trim();
-                if (customerName && selectedFlavor && selectedPrice) {
-                    sendOrder(selectedFlavor, selectedPrice, customerName);
+                const quantity = parseInt(quantityInput.value, 10);
+
+                if (!customerName) {
+                    showAlertModal('¡Un momento!', 'Por favor, ingresa tu nombre para poder continuar.');
+                    return;
+                }
+                if (isNaN(quantity) || quantity < 1) {
+                    showAlertModal('Cantidad Inválida', 'Por favor, ingresa una cantidad válida.');
+                    return;
+                }
+
+                if (selectedFlavor && selectedPrice != null) {
+                    sendOrder(selectedFlavor, selectedPrice, customerName, quantity);
                     hideNameModal();
-                } else {
-                    alert('Por favor, ingresa tu nombre.');
                 }
             });
 
             document.getElementById('cancel-order').addEventListener('click', hideNameModal);
             document.getElementById('close-confirmation').addEventListener('click', () => confirmationModal.classList.remove('visible'));
+            document.getElementById('close-alert-modal').addEventListener('click', hideAlertModal);
         });
     </script>
 </body>
