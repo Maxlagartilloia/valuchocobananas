@@ -3,509 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VALÚ Chocobananas - Menú Interactivo</title>
+    <title>VALÚ Chocobananas - Menú y Pedidos</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            /* Vibrant gradient background */
-            background: linear-gradient(135deg, #FFFDE7 0%, #FFF3E0 100%);
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            background-color: #1B5E20; /* Darker Brand Green */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(245, 124, 0, 0.15), transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(134, 239, 172, 0.1), transparent 40%);
+            overflow-x: hidden;
+            color: #4a4a4a;
         }
 
-        /* Animated Floating Background Container */
-        .floating-bg {
+        /* Chocobanana floating effect */
+        .chocobanana-fall {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: 0;
             overflow: hidden;
+            pointer-events: none;
         }
 
-        /* Individual floating shapes */
-        .floating-bg span {
+        .chocobanana-fall div {
             position: absolute;
-            display: block;
-            list-style: none;
-            width: 20px;
-            height: 20px;
-            background: rgba(245, 124, 0, 0.6); /* Brand Orange */
-            animation: float-up 25s linear infinite;
-            bottom: -150px;
-            border-radius: 50%;
+            top: -200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: fall-down linear infinite;
+            opacity: 0;
         }
 
-        /* Variations for floating shapes */
-        .floating-bg span:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; background-color: rgba(46, 125, 50, 0.5); }
-        .floating-bg span:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-        .floating-bg span:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-        .floating-bg span:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; background-color: rgba(255, 234, 0, 0.6); }
-        .floating-bg span:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-        .floating-bg span:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background-color: rgba(61, 43, 31, 0.4); }
-        .floating-bg span:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-        .floating-bg span:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-        .floating-bg span:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; background-color: rgba(46, 125, 50, 0.6); }
-        .floating-bg span:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
-
-        /* Keyframe animation for floating effect */
-        @keyframes float-up {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
+        @keyframes fall-down {
+            0% { transform: translateY(0) rotate(-20deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(120vh) rotate(60deg); opacity: 0; }
         }
 
-        /* Floating card style for sections */
-        .floating-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .floating-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Floating text effect */
-        .floating-text {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Floating WhatsApp Button */
-        .floating-whatsapp-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-            z-index: 100;
-            animation: pulse 2s infinite;
-            transition: transform 0.3s ease;
-        }
-        .floating-whatsapp-btn:hover {
-            transform: scale(1.1);
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+        .chocobanana-fall div:nth-child(1) { left: 10%; width: 120px; height: 120px; background-image: url('https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp'); animation-duration: 22s; animation-delay: 0s; }
+        .chocobanana-fall div:nth-child(2) { left: 85%; width: 150px; height: 150px; background-image: url('https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp'); animation-duration: 18s; animation-delay: 3s; }
+        .chocobanana-fall div:nth-child(3) { left: 50%; width: 100px; height: 100px; background-image: url('https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp'); animation-duration: 25s; animation-delay: 8s; }
+        .chocobanana-fall div:nth-child(4) { left: 30%; width: 140px; height: 140px; background-image: url('https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp'); animation-duration: 16s; animation-delay: 12s; }
+        .chocobanana-fall div:nth-child(5) { left: 65%; width: 110px; height: 110px; background-image: url('https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp'); animation-duration: 28s; animation-delay: 15s; }
         
         /* Brand Colors */
-        .brand-green-text { color: #1B5E20; }
-        .brand-orange-text { color: #E65100; }
+        .brand-green-text { color: #2E7D32; }
+        .brand-orange-text { color: #F57C00; }
         .brand-brown-text { color: #3D2B1F; }
         .bg-brand-green { background-color: #2E7D32; }
-        .bg-brand-orange { background-color: #F57C00; }
-        .bg-brand-brown { background-color: #3D2B1F; }
         .hover\:bg-brand-green-dark:hover { background-color: #1B5E20; }
+        .bg-brand-orange { background-color: #F57C00; }
         .hover\:bg-brand-orange-dark:hover { background-color: #E65100; }
         
-        /* Modal Styles */
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
-        .modal-overlay.visible { opacity: 1; visibility: visible; }
-        .modal-content { background: white; padding: 2rem; border-radius: 1rem; width: 90%; max-width: 400px; text-align: center; transform: scale(0.95); transition: transform 0.3s; }
-        .modal-overlay.visible .modal-content { transform: scale(1); }
-
+        /* Cart Modal Styles */
+        .cart-modal {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100%;
+            background: white; z-index: 1001; color: #1f2937;
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex; flex-direction: column;
+        }
+        .cart-modal.open { right: 0; }
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); z-index: 1000;
+            opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s;
+        }
+        .cart-overlay.visible { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- This div creates the animated background with floating shapes -->
-    <div class="floating-bg">
-        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <div class="chocobanana-fall">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 
-    <!-- Header section with the logo and brand name -->
-    <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-2 flex justify-center items-center">
-            <div class="flex items-center gap-3">
-                <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-24 md:h-48" onerror="this.onerror=null;this.src='https://placehold.co/200x200/FFF3E0/3D2B1F?text=VALÚ';">
-                <div class="text-2xl md:text-3xl font-bold brand-green-text">
-                    VALÚ <span class="brand-orange-text">Chocobananas</span>
-                </div>
-            </div>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-20 md:h-24 transition-all" onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFF3E0/3D2B1F?text=V';">
+            </a>
+            <nav class="hidden md:flex items-center gap-6 font-semibold brand-brown-text">
+                <a href="#productos" class="hover:brand-orange-text transition-colors">Productos</a>
+                <a href="#experiencia" class="hover:brand-orange-text transition-colors">Experiencia</a>
+                <a href="#footer-contact" class="hover:brand-orange-text transition-colors">Contacto</a>
+            </nav>
+            <button id="cart-button" class="relative bg-brand-orange text-white px-4 py-2 rounded-full font-bold hover:bg-brand-orange-dark transition-colors flex items-center gap-2">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="hidden sm:inline">Carrito</span>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-brand-green text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
         </div>
     </header>
 
-    <!-- Sub-header bar with slogan and social media links -->
-    <section class="bg-brand-brown py-3 shadow-lg">
-        <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-yellow-50 text-center sm:text-left">
-            <p class="text-sm font-semibold mb-2 sm:mb-0">El Sabor que te Encanta, la Calidad que nos Define.</p>
-            <div class="flex items-center gap-4">
-                <a href="https://www.facebook.com/valuchocobananas" target="_blank" class="text-yellow-50 hover:text-white transition-colors"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="https://www.instagram.com/valuchocobananasoficial" target="_blank" class="text-yellow-50 hover:text-white transition-colors"><i class="fab fa-instagram fa-lg"></i></a>
+    <main class="relative z-10">
+        <section class="py-20 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Más que un postre, una experiencia.</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Te esperamos en nuestro ambiente confortable que huele riquísimo. Descubre una amplia carta de chocobananas que no sabrás cuál elegir.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Hero section with main headline -->
-    <section class="py-20 md:py-24">
+        <section id="experiencia" class="pb-16">
+            <div class="container mx-auto px-6">
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 md:flex items-center gap-12">
+                    <div class="md:w-1/2 mb-8 md:mb-0">
+                        <img src="https://i.postimg.cc/htnht0Qv/504974765-1058337899724199-7091260268685360836-n.webp" alt="Interior del local de VALÚ Chocobananas" class="rounded-lg shadow-lg w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Local';">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl font-bold mb-4 brand-green-text">Nuestra Experiencia <span class="brand-orange-text">VALÚ</span></h2>
+                        <p class="mb-4 text-gray-600">Tu rincón favorito en el corazón de Shushufindi. Nacimos para convertir un postre clásico en una experiencia inolvidable. Nos enorgullece ofrecerte la más amplia y deliciosa carta de chocobananas que puedas imaginar.</p>
+                        <p class="text-gray-600">Más que solo un producto, queremos que te sientas como en casa. Por eso, hemos creado un espacio amplio, confortable y con un ambiente súper acogedor. ¡Somos el punto de encuentro perfecto para todos los "Valú Lovers"!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="productos" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-12 text-center text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Nuestros Sabores</h2>
+                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Product cards will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-contact" class="bg-gray-900/80 text-gray-300 pt-12 pb-8 mt-16 border-t border-white/10 relative z-10">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 floating-text brand-brown-text">Más que un postre, una experiencia.</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto brand-brown-text">Te esperamos en nuestro ambiente confortable que huele riquísimo. Descubre una amplia carta de chocobananas que no sabrás cuál elegir.</p>
-        </div>
-    </section>
-
-    <!-- Features section with three key points -->
-    <section class="pb-16">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="floating-card p-8 text-center">
-                    <div class="bg-brand-green text-white rounded-full p-5 mb-4 inline-block"><i class="fas fa-couch fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Ambiente Acogedor</h3>
-                    <p>Disfruta en nuestro rincón amplio, confortable y perfecto para compartir.</p>
-                </div>
-                <div class="floating-card p-8 text-center">
-                    <div class="bg-brand-orange text-white rounded-full p-5 mb-4 inline-block"><i class="fas fa-book-open fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Variedad Increíble</h3>
-                    <p>Una amplia y variada carta de chocobananas con opciones para todos los gustos.</p>
-                </div>
-                <div class="floating-card p-8 text-center">
-                    <div class="bg-brand-green text-white rounded-full p-5 mb-4 inline-block"><i class="fas fa-star fa-2x"></i></div>
-                    <h3 class="text-xl font-bold mb-2 brand-brown-text">Experiencia Sensorial</h3>
-                    <p>Un lugar que no solo se ve bien, sino que además ¡huele riquísimo!</p>
-                </div>
+             <div class="grid md:grid-cols-3 gap-8">
+                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Contacto</h4><p><i class="fab fa-whatsapp mr-2"></i> +593 98 919 6228</p><p><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p></div>
+                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4><a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto</a><p>Shushufindi, Ecuador</p></div>
+                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Horario</h4><p>Lunes a Sábado</p><p>3:00 PM - 7:30 PM</p></div>
             </div>
-        </div>
-    </section>
-
-    <!-- About Us section -->
-    <section class="pb-16">
-        <div class="container mx-auto px-6">
-            <div class="floating-card p-8 md:p-12 md:flex items-center gap-12">
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t39.30808-6/522644453_1330666818690196_6211870659271154166_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=J7PColix9oUQ7kNvwHrJgCt&_nc_oc=AdkEIKzeC8PV5t-i31Jn-FmnYoOUrYWyxmqJXlH7TLl6_wFW9_9946FIEq3I6xAan-8&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=P5lVp-3c9cnxn8HF1EI20A&oh=00_AfSP3oiZpjd3WEbksEAAtuWK4UaksGis-FjG-31rW7r3wg&oe=68903D1A" alt="Frente del local de VALÚ Chocobananas" class="rounded-lg shadow-xl w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Local';">
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold mb-4 brand-green-text floating-text">¡Hola, somos <span class="brand-orange-text">VALÚ Chocobananas!</span></h2>
-                    <p class="mb-4">Tu rincón favorito en el corazón de Shushufindi. Nacimos para convertir un postre clásico en una experiencia inolvidable. Nos enorgullece ofrecerte la más amplia y deliciosa carta de chocobananas que puedas imaginar, ¡te aseguramos que no sabrás cuál elegir!.</p>
-                    <p>Más que solo un producto, queremos que te sientas como en casa. Por eso, hemos creado un espacio amplio, confortable y con un ambiente súper acogedor. Te esperamos de lunes a sábado para que compartas un momento dulce y divertido. ¡Somos el punto de encuentro perfecto para todos los "Valú Lovers"!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Menu section with product cards -->
-    <section class="pb-16">
-        <div class="container mx-auto px-6">
-            <h2 id="menu-title" class="text-3xl font-bold mb-12 text-center brand-brown-text floating-text">Nuestros Sabores</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Each card is a menu item, clickable for ordering -->
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Crujiente de Maní" data-price="1.00"><img src="https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp" alt="Chocobanana con maní" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Crujiente+de+Maní';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Crujiente de Maní</h3><p class="text-sm">La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Fiesta de Chispas" data-price="1.00"><img src="https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp" alt="Chocobanana con chispas de colores" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Fiesta+de+Chispas';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Fiesta de Chispas</h3><p class="text-sm">Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Sueño Blanco" data-price="1.00"><img src="https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp" alt="Chocobanana con cobertura de chocolate blanco y chispas" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Sueño+Blanco';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Sueño Blanco</h3><p class="text-sm">Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Galleta Manía" data-price="1.00"><img src="https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp" alt="Chocobanana con galleta" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Galleta+Manía';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Galleta Manía</h3><p class="text-sm">Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Choco-Chispas" data-price="1.00"><img src="https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp" alt="Chocobanana con chispas de chocolate" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Choco-Chispas';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Choco-Chispas</h3><p class="text-sm">Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Nieve de Coco" data-price="1.00"><img src="https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp" alt="Chocobanana con coco rallado" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Nieve+de+Coco';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Nieve de Coco</h3><p class="text-sm">Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Corazón de Amor" data-price="1.00"><img src="https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp" alt="Chocobanana con decorado de corazón" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Corazón+de+Amor';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Corazón de Amor</h3><p class="text-sm">El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Doble Chocolate" data-price="1.00"><img src="https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp" alt="Chocobanana con decorado de chocolate blanco" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Doble+Chocolate';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Doble Chocolate</h3><p class="text-sm">Base de chocolate oscuro con un elegante decorado de chocolate blanco. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Explosión Crujiente" data-price="1.00"><img src="https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp" alt="Chocobanana con arroz inflado" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Explosión+Crujiente';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Explosión Crujiente</h3><p class="text-sm">Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente! <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Fresa Pasión" data-price="1.00"><img src="https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp" alt="Chocobanana con topping de fresa" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Fresa+Pasión';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Fresa Pasión</h3><p class="text-sm">Una dulce cobertura de chocolate con un toque de fresa y decoraciones románticas. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-                <div class="floating-card text-center overflow-hidden cursor-pointer" data-flavor="Almendra Tostada" data-price="1.00"><img src="https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp" alt="Chocobanana con almendras" class="w-full h-56 object-contain bg-white/20 pointer-events-none" onerror="this.onerror=null;this.src='https://placehold.co/400x224/FFF3E0/3D2B1F?text=Almendra+Tostada';"><div class="p-6 pointer-events-none"><h3 class="text-xl font-bold mb-2 brand-brown-text">Almendra Tostada</h3><p class="text-sm">Chocolate premium cubierto con trocitos de almendra tostada para un sabor sofisticado. <br><span class="font-bold brand-orange-text mt-2 block">Costo: $1.00</span></p></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer with contact information -->
-    <footer id="footer-contact" class="bg-brand-brown text-yellow-50 pt-12 pb-8 mt-16">
-        <div class="container mx-auto px-6 text-center">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="mb-6 md:mb-0">
-                    <h4 class="font-bold text-lg mb-2 text-white">Contacto</h4>
-                    <p><i class="fab fa-whatsapp mr-2"></i> +593 98 919 6228</p>
-                    <p><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p>
-                </div>
-                <div class="mb-6 md:mb-0">
-                    <h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4>
-                    <a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto</a>
-                    <p>Shushufindi, Ecuador</p>
-                </div>
-                <div class="mb-6 md:mb-0">
-                    <h4 class="font-bold text-lg mb-2 text-white">Horario</h4>
-                    <p>Lunes a Sábado</p>
-                    <p>3:00 PM - 7:30 PM</p>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-white/20 flex flex-col sm:flex-row justify-between items-center">
-                <p class="text-sm text-white/70 mb-4 sm:mb-0">&copy; 2024 VALÚ Chocobananas. Todos los derechos reservados.</p>
-                <div>
-                    <a href="https://www.facebook.com/valuchocobananas" target="_blank" class="text-white/70 hover:text-white mx-2 text-xl"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/valuchocobananasoficial" target="_blank" class="text-white/70 hover:text-white mx-2 text-xl"><i class="fab fa-instagram"></i></a>
+            <div class="mt-8 pt-8 border-t border-white/20 text-sm text-white/70">
+                <p>&copy; 2024 VALÚ Chocobananas. Todos los derechos reservados.</p>
+                <!-- Bot & Landing promotional footer -->
+                <div class="mt-4">
+                    <p class="text-xs text-white/50">
+                        Desarrollado con ❤️ por 
+                        <a href="https://wa.me/593999630862?text=Hola%20Bot%20&%20Landing,%20estoy%20interesado%20en%20una%20página%20web%20como%20la%20de%20VALÚ%20Chocobananas." target="_blank" class="font-bold text-white/70 hover:text-white transition-colors">
+                            Bot & Landing
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp button -->
-    <a href="https://wa.me/593989196228?text=¡Hola%20VALÚ%20Chocobananas!%20Quisiera%20hacer%20un%20pedido%20o%20tengo%20una%20consulta." target="_blank" class="floating-whatsapp-btn">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Cart Modal -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="cart-modal" class="cart-modal shadow-2xl">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-2xl font-bold text-gray-800">Tu Pedido</h2>
+            <button id="close-cart-button" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+        </div>
+        
+        <div id="cart-items" class="flex-grow p-4 overflow-y-auto">
+            <!-- Cart items will be injected here -->
+        </div>
 
-    <!-- Modal for collecting customer's name and quantity -->
-    <div id="name-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4 brand-brown-text">¡Casi listo!</h2>
-            <p class="mb-4">Para identificar tu pedido, por favor ingresa tu nombre y la cantidad que deseas.</p>
-            <div class="mb-4">
-                <label for="customer-name" class="block text-left font-semibold mb-1">Tu Nombre:</label>
-                <input type="text" id="customer-name" class="w-full border-2 border-gray-300 p-2 rounded-lg focus:border-brand-orange focus:ring-brand-orange" placeholder="Ej: Carlos">
+        <div class="p-4 border-t bg-gray-50">
+            <div class="flex justify-between items-center font-bold text-xl mb-4 text-gray-800">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
             </div>
-            <div class="mb-6">
-                <label for="order-quantity" class="block text-left font-semibold mb-1">Cantidad:</label>
-                <input type="number" id="order-quantity" value="1" min="1" max="20" class="w-full border-2 border-gray-300 p-2 rounded-lg focus:border-brand-orange focus:ring-brand-orange">
+            <div id="checkout-form" class="hidden">
+                <!-- Bank Details Section -->
+                <div class="bg-blue-50 border border-blue-200 text-blue-800 p-3 rounded-lg mb-4 text-sm">
+                    <h4 class="font-bold mb-2 text-center">Datos para Transferencia</h4>
+                    <p><strong>Banco:</strong> Banco Pichincha</p>
+                    <p><strong>Cuenta de Ahorros:</strong> 1234567890</p>
+                    <p><strong>A nombre de:</strong> VALÚ Chocobananas S.A.S</p>
+                    <p><strong>RUC/CI:</strong> 1234567890001</p>
+                </div>
+
+                <h3 class="font-bold text-lg mb-3 text-center text-gray-800">Completa tus datos para enviar</h3>
+                <input type="text" id="customer-name" placeholder="Tu Nombre Completo *" required class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none">
+                <input type="tel" id="customer-phone" placeholder="Tu Número de WhatsApp *" required class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none">
+                <textarea id="customer-address" placeholder="Tu Dirección y Referencia *" required rows="2" class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none"></textarea>
+                
+                <!-- Location and Payment Proof Buttons -->
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <button id="share-location-btn" class="w-full bg-blue-500 text-white text-sm font-bold py-2 px-2 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-1">
+                        <i class="fas fa-map-marker-alt"></i> Compartir Ubicación
+                    </button>
+                    <label for="payment-proof-input" class="w-full bg-gray-500 text-white text-sm font-bold py-2 px-2 rounded-full hover:bg-gray-600 transition-colors flex items-center justify-center gap-1 cursor-pointer">
+                        <i class="fas fa-paperclip"></i> Adjuntar Comprobante
+                    </label>
+                    <input type="file" id="payment-proof-input" class="hidden" accept="image/*">
+                </div>
+                <p id="location-status" class="text-xs text-center text-green-600 font-semibold mb-2"></p>
+                <p id="payment-status" class="text-xs text-center text-green-600 font-semibold mb-2"></p>
+
+                <p class="text-xs text-gray-500 mb-4">* Campos obligatorios</p>
+                <button id="send-order-button" class="w-full bg-green-500 text-white font-bold py-3 rounded-full hover:bg-green-600 transition-colors flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Enviar Pedido por WhatsApp
+                </button>
             </div>
-            <button id="submit-order" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-orange-dark transition-colors">Confirmar Pedido</button>
-            <button id="cancel-order" class="text-gray-500 mt-2">Cancelar</button>
+            <button id="checkout-button" class="w-full bg-brand-orange text-white font-bold py-3 rounded-full hover:bg-brand-orange-dark transition-colors">
+                Continuar al Pago
+            </button>
         </div>
     </div>
     
-    <!-- Modal for order confirmation -->
-    <div id="confirmation-modal" class="modal-overlay">
-         <div class="modal-content">
-            <h2 class="text-2xl font-bold mb-4 brand-green-text">¡Pedido Enviado!</h2>
-            <p id="confirmation-message" class="mb-4">Tu chocobanana llegará a tu mesa en un momento.</p>
-            <button id="close-confirmation" class="bg-brand-green text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-green-dark transition-colors">¡Genial!</button>
-        </div>
-    </div>
-    
-    <!-- Generic Alert Modal to replace native alert() -->
-    <div id="alert-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h2 id="alert-modal-title" class="text-2xl font-bold mb-4 brand-orange-text"></h2>
-            <p id="alert-modal-message" class="mb-6"></p>
-            <button id="close-alert-modal" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-full w-full hover:bg-brand-orange-dark transition-colors">Entendido</button>
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-black/60 z-[1002] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-xl p-8 text-center shadow-2xl max-w-sm transform scale-95 transition-transform duration-300">
+            <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
+            <h2 class="text-2xl font-bold brand-brown-text mb-2">¡Gracias por tu compra!</h2>
+            <p class="text-gray-600 mb-6">Hemos abierto WhatsApp para que envíes tu pedido. ¡Lo prepararemos enseguida!</p>
+            <button id="close-confirmation-btn" class="bg-brand-green text-white font-bold py-2 px-6 rounded-full">Entendido</button>
         </div>
     </div>
 
 
-    <script type="module">
-        // Import Firebase services
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const products = [
+            { id: 1, name: 'Crujiente de Maní', price: 1.00, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible!' },
+            { id: 2, name: 'Fiesta de Chispas', price: 1.00, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión!' },
+            { id: 3, name: 'Sueño Blanco', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso!' },
+            { id: 4, name: 'Galleta Manía', price: 1.00, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación!' },
+            { id: 5, name: 'Choco-Chispas', price: 1.00, img: 'https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp', desc: 'Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura!' },
+            { id: 6, name: 'Nieve de Coco', price: 1.00, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco.' },
+            { id: 7, name: 'Corazón de Amor', price: 1.00, img: 'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp', desc: 'El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir!' },
+            { id: 8, name: 'Doble Chocolate', price: 1.00, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'Base de chocolate oscuro con un elegante decorado de chocolate blanco.' },
+            { id: 9, name: 'Explosión Crujiente', price: 1.00, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: 'Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente!' },
+            { id: 10, name: 'Fresa Pasión', price: 1.00, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Una dulce cobertura de chocolate con un toque de fresa y decoraciones románticas.' },
+            { id: 11, name: 'Almendra Tostada', price: 1.00, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Chocolate premium cubierto con trocitos de almendra tostada para un sabor sofisticado.' }
+        ];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Securely initialize Firebase using environment variables
-            if (typeof __firebase_config === 'undefined' || typeof __app_id === 'undefined') {
-                console.error("Error: Firebase configuration or App ID is missing.");
-                // Disable ordering functionality if Firebase isn't configured
-                document.querySelectorAll('[data-flavor]').forEach(card => card.style.cursor = 'not-allowed');
-                showAlertModal('Error de Configuración', 'El sistema de pedidos no está disponible en este momento. Por favor, avisa al personal.');
+        const productList = document.getElementById('product-list');
+        const cartButton = document.getElementById('cart-button');
+        const closeCartButton = document.getElementById('close-cart-button');
+        const cartModal = document.getElementById('cart-modal');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalEl = document.getElementById('cart-total');
+        const cartCountEl = document.getElementById('cart-count');
+        const checkoutButton = document.getElementById('checkout-button');
+        const checkoutForm = document.getElementById('checkout-form');
+        const sendOrderButton = document.getElementById('send-order-button');
+        const shareLocationBtn = document.getElementById('share-location-btn');
+        const paymentProofInput = document.getElementById('payment-proof-input');
+        const locationStatus = document.getElementById('location-status');
+        const paymentStatus = document.getElementById('payment-status');
+        const confirmationModal = document.getElementById('confirmation-modal');
+        const closeConfirmationBtn = document.getElementById('close-confirmation-btn');
+
+        let cart = {};
+        let sharedLocation = null;
+        let paymentProofFile = null;
+
+        // 1. Render Products
+        function renderProducts() {
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl text-center overflow-hidden flex flex-col shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 hover:-translate-y-2';
+                card.innerHTML = `
+                    <div class="bg-gray-50"><img src="${product.img}" alt="${product.name}" class="w-full h-56 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x224/ffffff/3D2B1F?text=${product.name}';"></div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold mb-2 brand-brown-text">${product.name}</h3>
+                        <p class="text-sm flex-grow text-gray-600">${product.desc}</p>
+                        <p class="font-bold brand-orange-text mt-2 text-lg">$${product.price.toFixed(2)}</p>
+                        <button class="add-to-cart-btn mt-4 bg-brand-green text-white font-bold py-2 px-4 rounded-full hover:bg-brand-green-dark transition-colors" data-id="${product.id}">
+                            Añadir al Carrito
+                        </button>
+                    </div>
+                `;
+                productList.appendChild(card);
+            });
+        }
+
+        // 2. Cart Logic (addToCart, updateQuantity, updateCart)
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId].quantity++;
+            } else {
+                const product = products.find(p => p.id == productId);
+                cart[productId] = { ...product, quantity: 1 };
+            }
+            updateCart();
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            if (cart[productId]) {
+                if (newQuantity > 0) {
+                    cart[productId].quantity = newQuantity;
+                } else {
+                    delete cart[productId];
+                }
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            if (Object.keys(cart).length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500 py-8">Tu carrito está vacío.</p>';
+                checkoutButton.classList.add('hidden');
+                checkoutForm.classList.add('hidden');
+            } else {
+                checkoutButton.classList.remove('hidden');
+                for (const id in cart) {
+                    const item = cart[id];
+                    total += item.price * item.quantity;
+                    totalItems += item.quantity;
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex items-center gap-4 py-3 border-b';
+                    itemEl.innerHTML = `
+                        <img src="${item.img}" class="w-16 h-16 object-contain rounded-md bg-gray-100" onerror="this.onerror=null;this.src='https://placehold.co/64x64/e0e7ff/302b63?text=V';">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-gray-800">${item.name}</h4>
+                            <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="number" value="${item.quantity}" min="1" class="w-14 border-2 text-center rounded-md quantity-input" data-id="${id}">
+                            <button class="text-red-500 hover:text-red-700 remove-btn text-xl" data-id="${id}">&times;</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemEl);
+                }
+            }
+
+            cartTotalEl.textContent = `$${total.toFixed(2)}`;
+            cartCountEl.textContent = totalItems;
+        }
+
+        // 3. Event Listeners
+        productList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                const id = e.target.dataset.id;
+                addToCart(id);
+                e.target.textContent = '¡Añadido!';
+                setTimeout(() => { e.target.textContent = 'Añadir al Carrito'; }, 1000);
+            }
+        });
+
+        cartItemsContainer.addEventListener('change', (e) => {
+            if (e.target.classList.contains('quantity-input')) {
+                const id = e.target.dataset.id;
+                const quantity = parseInt(e.target.value, 10);
+                updateQuantity(id, quantity);
+            }
+        });
+
+        cartItemsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-btn')) {
+                const id = e.target.dataset.id;
+                updateQuantity(id, 0);
+            }
+        });
+
+        cartButton.addEventListener('click', () => {
+            cartModal.classList.add('open');
+            cartOverlay.classList.add('visible');
+        });
+
+        closeCartButton.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+            cartOverlay.classList.remove('visible');
+        });
+
+        cartOverlay.addEventListener('click', () => {
+            cartModal.classList.remove('open');
+            cartOverlay.classList.remove('visible');
+        });
+
+        checkoutButton.addEventListener('click', () => {
+            checkoutButton.classList.add('hidden');
+            checkoutForm.classList.remove('hidden');
+        });
+
+        shareLocationBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                locationStatus.textContent = 'Obteniendo ubicación...';
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                    locationStatus.textContent = '¡Ubicación compartida!';
+                }, () => {
+                    locationStatus.textContent = 'No se pudo obtener la ubicación.';
+                });
+            } else {
+                locationStatus.textContent = 'Geolocalización no es soportada.';
+            }
+        });
+
+        paymentProofInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                paymentProofFile = e.target.files[0];
+                paymentStatus.textContent = `Archivo: ${paymentProofFile.name}`;
+            } else {
+                paymentProofFile = null;
+                paymentStatus.textContent = '';
+            }
+        });
+
+        sendOrderButton.addEventListener('click', () => {
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+
+            if (!name || !phone || !address) {
+                alert('Por favor, completa todos los campos obligatorios (*).');
                 return;
             }
+
+            let message = `¡Hola VALÚ Chocobananas! 👋 Quisiera hacer el siguiente pedido:\n\n`;
+            let total = 0;
+
+            for (const id in cart) {
+                const item = cart[id];
+                message += `*${item.quantity}x* - ${item.name}\n`;
+                total += item.price * item.quantity;
+            }
+
+            message += `\n*Total del Pedido: $${total.toFixed(2)}*\n\n`;
+            message += `*Mis Datos de Entrega:*\n`;
+            message += `*Nombre:* ${name}\n`;
+            message += `*WhatsApp:* ${phone}\n`;
+            message += `*Dirección:* ${address}\n`;
+
+            if (sharedLocation) {
+                message += `*Ubicación (Google Maps):* ${sharedLocation}\n`;
+            }
+            if (paymentProofFile) {
+                message += `\n*Adjunto el comprobante de pago en el siguiente mensaje.*`;
+            }
+
+            message += `\n¡Espero su confirmación! Gracias. 😊`;
             
-            const firebaseConfig = JSON.parse(__firebase_config);
-            const appId = __app_id;
+            const whatsappNumber = '593989196228';
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-            // Initialize Firebase App
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-            const auth = getAuth(app);
-
-            let dbReady = false;
-            let tableNumber = null;
-            let selectedFlavor = null;
-            let selectedPrice = null;
-
-            // Handle authentication state changes
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    console.log("User authenticated:", user.uid);
-                    dbReady = true;
-                } else {
-                    console.log("User is not authenticated. Attempting to sign in.");
-                    signIn(); // Attempt to sign in if the user is not authenticated
-                }
-            });
-
-            // Sign in the user, preferring a custom token if available
-            async function signIn() {
-                if (auth.currentUser) return;
-                try {
-                    if (typeof __initial_auth_token !== 'undefined') {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                } catch (error) {
-                    console.error("Authentication Error:", error);
-                    showAlertModal('Error de Autenticación', 'No se pudo verificar la sesión. Por favor, recarga la página.');
-                }
-            }
-            
-            // Get table number from URL parameters
-            function getTableNumber() {
-                const params = new URLSearchParams(window.location.search);
-                return params.get('table');
-            }
-
-            // Send order data to Firestore and Webhook
-            async function sendOrder(flavor, price, customerName, quantity) {
-                if (!dbReady || !tableNumber || !appId) {
-                    showAlertModal('Error de Conexión', 'No se pudo conectar con el sistema. Por favor, refresca la página o contacta al personal.');
-                    return;
-                }
-
-                // 1. Prepare the order data for both Firestore and the webhook
-                const orderData = {
-                    table: `${tableNumber}`,
-                    flavor: flavor,
-                    price: price,
-                    customer: customerName,
-                    quantity: quantity,
-                    status: "pending",
-                    timestamp: new Date().toISOString() // Use a consistent ISO string timestamp
-                };
-
-                // 2. Send data to Firestore
-                try {
-                    const ordersCollection = collection(db, `artifacts/${appId}/public/data/orders`);
-                    // Firestore will use its own server-side timestamp for accuracy
-                    await addDoc(ordersCollection, { ...orderData, timestamp: serverTimestamp() });
-                    console.log("Order successfully saved to Firestore.");
-                } catch (error) {
-                    console.error("Error sending order to Firestore: ", error);
-                    showAlertModal('Error de Pedido', 'Hubo un problema al guardar tu pedido. Por favor, inténtalo de nuevo.');
-                    return; // Stop if saving to the database fails
-                }
-
-                // 3. Send data to the dispatch webhook
-                try {
-                    const webhookUrl = 'https://crissbot-n8n.raf5ac.easypanel.host/webhook/91f9adeb-b0a2-4f40-a7b4-38c0508d9ecf';
-                    await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(orderData),
-                    });
-                    console.log("Order notification successfully sent to webhook.");
-                } catch (error) {
-                    console.error("Error sending webhook notification: ", error);
-                    // Do not show an error to the user here, as the order was placed successfully.
-                    // This is a background notification failure.
-                }
-                
-                // 4. Show confirmation to the user
-                const plural = quantity > 1 ? 's' : '';
-                showConfirmationModal(`¡Gracias, ${customerName}! Tu pedido de <strong>${quantity} chocobanana${plural} de ${flavor}</strong> va en camino a la <strong>Mesa ${tableNumber}</strong>.`);
-            }
-
-            // Get references to all modal elements
-            const nameModal = document.getElementById('name-modal');
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const alertModal = document.getElementById('alert-modal');
-            const customerNameInput = document.getElementById('customer-name');
-            const quantityInput = document.getElementById('order-quantity');
-            
-            // Functions to show/hide modals
-            function showNameModal(flavor, price) {
-                selectedFlavor = flavor;
-                selectedPrice = price;
-                quantityInput.value = 1; // Reset quantity to 1 each time
-                nameModal.classList.add('visible');
-                customerNameInput.focus();
-            }
-
-            function hideNameModal() {
-                nameModal.classList.remove('visible');
-                customerNameInput.value = '';
-            }
-
-            function showConfirmationModal(message) {
-                document.getElementById('confirmation-message').innerHTML = message;
-                confirmationModal.classList.add('visible');
-            }
-            
-            function showAlertModal(title, message) {
-                document.getElementById('alert-modal-title').textContent = title;
-                document.getElementById('alert-modal-message').textContent = message;
-                alertModal.classList.add('visible');
-            }
-
-            function hideAlertModal() {
-                alertModal.classList.remove('visible');
-            }
-
-            // Initial page setup logic
-            signIn();
-            tableNumber = getTableNumber();
-            const menuTitle = document.getElementById('menu-title');
-
-            if (tableNumber) {
-                menuTitle.innerHTML = `MENÚ MESA <span class="brand-orange-text">#${tableNumber}</span> - ¡Elige tu Sabor!`;
-            }
-
-            // Add click listeners to all product cards
-            document.querySelectorAll('[data-flavor]').forEach(card => {
-                card.addEventListener('click', () => {
-                    if (!tableNumber) {
-                        showAlertModal('¡Escanea el QR!', 'Para poder ordenar, por favor escanea el código QR que se encuentra en tu mesa.');
-                        return;
-                    }
-                    const flavor = card.getAttribute('data-flavor');
-                    const price = parseFloat(card.getAttribute('data-price'));
-                    showNameModal(flavor, price);
-                });
-            });
-
-            // Add click listeners for all modal buttons
-            document.getElementById('submit-order').addEventListener('click', () => {
-                const customerName = customerNameInput.value.trim();
-                const quantity = parseInt(quantityInput.value, 10);
-
-                if (!customerName) {
-                    showAlertModal('¡Un momento!', 'Por favor, ingresa tu nombre para poder continuar.');
-                    return;
-                }
-                if (isNaN(quantity) || quantity < 1) {
-                    showAlertModal('Cantidad Inválida', 'Por favor, ingresa una cantidad válida.');
-                    return;
-                }
-
-                if (selectedFlavor && selectedPrice != null) {
-                    sendOrder(selectedFlavor, selectedPrice, customerName, quantity);
-                    hideNameModal();
-                }
-            });
-
-            document.getElementById('cancel-order').addEventListener('click', hideNameModal);
-            document.getElementById('close-confirmation').addEventListener('click', () => confirmationModal.classList.remove('visible'));
-            document.getElementById('close-alert-modal').addEventListener('click', hideAlertModal);
+            window.open(whatsappUrl, '_blank');
+            showConfirmationModal();
         });
+
+        function showConfirmationModal() {
+            confirmationModal.classList.remove('opacity-0', 'pointer-events-none');
+            confirmationModal.querySelector('div').classList.remove('scale-95');
+        }
+
+        function hideConfirmationModal() {
+            confirmationModal.classList.add('opacity-0', 'pointer-events-none');
+            confirmationModal.querySelector('div').classList.add('scale-95');
+            
+            // Reset form and cart
+            cart = {};
+            sharedLocation = null;
+            paymentProofFile = null;
+            updateCart();
+            checkoutForm.classList.add('hidden');
+            document.getElementById('customer-name').value = '';
+            document.getElementById('customer-phone').value = '';
+            document.getElementById('customer-address').value = '';
+            paymentProofInput.value = '';
+            locationStatus.textContent = '';
+            paymentStatus.textContent = '';
+            cartModal.classList.remove('open');
+            cartOverlay.classList.remove('visible');
+        }
+
+        closeConfirmationBtn.addEventListener('click', hideConfirmationModal);
+
+        // Initial Load
+        renderProducts();
+        updateCart();
+    });
     </script>
 </body>
 </html>
