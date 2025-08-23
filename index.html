@@ -24,8 +24,14 @@
             font-family: 'Poppins', sans-serif;
             background-color: #1B5E20; /* Darker Brand Green */
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(245, 124, 0, 0.15), transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(134, 239, 172, 0.1), transparent 40%);
+                radial-gradient(circle at 15% 50%, rgba(245, 124, 0, 0.1), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(134, 239, 172, 0.1), transparent 50%),
+                radial-gradient(circle at 25% 10%, rgba(255, 255, 255, 0.1) 1px, transparent 2px),
+                radial-gradient(circle at 75% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 2px),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 1px, transparent 2px),
+                radial-gradient(circle at 90% 15%, rgba(255, 255, 255, 0.09) 1px, transparent 2px),
+                radial-gradient(circle at 10% 85%, rgba(255, 255, 255, 0.1) 1px, transparent 2px);
+            background-size: 100% 100%, 100% 100%, 50px 50px, 70px 70px, 60px 60px, 80px 80px, 40px 40px;
             overflow-x: hidden;
             color: #4a4a4a;
         }
@@ -73,20 +79,14 @@
         .bg-brand-orange { background-color: #F57C00; }
         .hover\:bg-brand-orange-dark:hover { background-color: #E65100; }
         
-        /* Cart Modal Styles */
-        .cart-modal {
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 450px; height: 100%;
-            background: white; z-index: 1001; color: #1f2937;
-            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: flex; flex-direction: column;
+        /* Glossy text effect for the main headline */
+        .glossy-text {
+            text-shadow: 0 0 5px rgba(255,255,255,0.7), 
+                         0 0 10px rgba(255,255,255,0.7), 
+                         0 0 15px rgba(245, 124, 0, 0.5), 
+                         0 0 20px rgba(245, 124, 0, 0.5);
         }
-        .cart-modal.open { right: 0; }
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6); z-index: 1000;
-            opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s;
-        }
-        .cart-overlay.visible { opacity: 1; visibility: visible; }
+
     </style>
 </head>
 <body class="text-gray-800">
@@ -101,7 +101,7 @@
 
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
+            <a href="#" onclick="showPage('home')" class="flex items-center gap-3">
                 <img src="https://scontent.fptz1-1.fna.fbcdn.net/v/t1.6435-9/120623817_2756311547940742_4877580013596553030_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mEQdu5xSycAQ7kNvwE9MaZS&_nc_oc=AdnW_LwBOBKzbCLPJnbHYRBLDwy5nb364G1MWPuam_DZujGlsV5ZDpXZmdvwVCTsOXE&_nc_zt=23&_nc_ht=scontent.fptz1-1.fna&_nc_gid=M5h8cPgjuu5YT6FtW6pIEA&oh=00_AfS4lCBjAcVVSa0Z9FIvD4nhb3rxEoMRffX247tuX_KEtw&oe=68B1EA8A" alt="Logo de VALÚ Chocobananas" class="h-20 md:h-24 transition-all" onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFF3E0/3D2B1F?text=V';">
             </a>
             <nav class="hidden md:flex items-center gap-6 font-semibold brand-brown-text">
@@ -109,7 +109,7 @@
                 <a href="#experiencia" class="hover:brand-orange-text transition-colors">Experiencia</a>
                 <a href="#footer-contact" class="hover:brand-orange-text transition-colors">Contacto</a>
             </nav>
-            <button id="cart-button" class="relative bg-brand-orange text-white px-4 py-2 rounded-full font-bold hover:bg-brand-orange-dark transition-colors flex items-center gap-2">
+            <button id="cart-button" onclick="showPage('checkout')" class="relative bg-brand-orange text-white px-4 py-2 rounded-full font-bold hover:bg-brand-orange-dark transition-colors flex items-center gap-2">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="hidden sm:inline">Carrito</span>
                 <span id="cart-count" class="absolute -top-2 -right-2 bg-brand-green text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
@@ -117,11 +117,20 @@
         </div>
     </header>
 
-    <main class="relative z-10">
+    <main id="home-page" class="relative z-10">
         <section class="py-20 md:py-24">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Más que un postre, una experiencia.</h1>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white glossy-text">Más que un postre, una experiencia.</h1>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Te esperamos en nuestro ambiente confortable que huele riquísimo. Descubre una amplia carta de chocobananas que no sabrás cuál elegir.</p>
+            </div>
+        </section>
+        
+        <section id="productos" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-12 text-center text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Nuestros Sabores</h2>
+                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Product cards will be injected here by JavaScript -->
+                </div>
             </div>
         </section>
 
@@ -139,27 +148,80 @@
                 </div>
             </div>
         </section>
-        
-        <section id="productos" class="py-16">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold mb-12 text-center text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Nuestros Sabores</h2>
-                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                    <!-- Product cards will be injected here by JavaScript -->
+    </main>
+
+    <main id="checkout-page" class="hidden relative z-10 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl text-center text-white glossy-text mb-12">Finalizar Pedido</h2>
+            <div id="cart-empty-message" class="hidden text-center py-12 bg-white/90 rounded-2xl">
+                <i class="fas fa-shopping-cart text-gray-300 text-6xl mb-4"></i>
+                <p class="text-gray-500 text-xl">Tu carrito está vacío.</p>
+                <button onclick="showPage('home')" class="mt-6 bg-brand-orange text-white text-lg font-semibold py-3 px-8 rounded-full">Ver Productos</button>
+            </div>
+            <div id="cart-content" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl text-white mb-6">1. Tus Datos de Envío</h3>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <form id="order-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-bold mb-2">Nombre Completo</label>
+                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-bold mb-2">Número de WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border rounded-lg" placeholder="Ej: 0999999999" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address" class="block text-gray-700 font-bold mb-2">Dirección de Entrega</label>
+                                <textarea id="address" name="address" rows="3" class="w-full px-3 py-2 border rounded-lg" placeholder="Calle, barrio, referencia..." required></textarea>
+                            </div>
+                             <div class="flex justify-center">
+                                <button type="button" id="share-location-btn-checkout" class="w-full bg-blue-500 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
+                                    <i class="fas fa-map-marker-alt"></i> Compartir Ubicación
+                                </button>
+                            </div>
+                            <p id="location-status-checkout" class="text-xs text-center text-green-600 font-semibold mt-2"></p>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl text-white">2. Resumen de tu Pedido</h3>
+                        <button id="clear-cart-btn" title="Vaciar Carrito" class="text-red-300 hover:text-white text-sm font-semibold">Vaciar Carrito</button>
+                    </div>
+                    <div id="checkout-summary" class="bg-white p-6 rounded-lg shadow-md">
+                        <!-- El resumen del carrito se insertará aquí -->
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                        <h3 class="text-xl text-gray-700 mb-4 font-bold">Información de Pago</h3>
+                        <div class="bg-blue-50 border border-blue-200 text-blue-800 p-3 rounded-lg text-sm">
+                            <p><strong>Banco:</strong> Banco Pichincha</p>
+                            <p><strong>Cuenta de Ahorros:</strong> 2208394961</p>
+                            <p><strong>A nombre de:</strong> Monica Ruilova</p>
+                            <p><strong>C.I:</strong> 0921738837</p>
+                        </div>
+                    </div>
+                    <button type="submit" form="order-form" id="submit-order-btn" class="w-full bg-brand-orange text-white text-lg font-semibold py-3 rounded-full mt-8 hover:bg-brand-orange-dark transition-colors flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp"></i> Realizar Pedido
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer id="footer-contact" class="bg-gray-900/80 text-gray-300 pt-12 pb-8 mt-16 border-t border-white/10 relative z-10">
         <div class="container mx-auto px-6 text-center">
              <div class="grid md:grid-cols-3 gap-8">
-                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Contacto</h4><p><i class="fab fa-whatsapp mr-2"></i> +593 96 049 9387</p><p><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p></div>
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Contacto</h4>
+                    <a href="https://wa.me/593963829892" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fab fa-whatsapp mr-2"></i> +593 96 382 9892</a>
+                    <p class="mt-2"><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p>
+                </div>
                 <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4><a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto</a><p>Shushufindi, Ecuador</p></div>
                 <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Horario</h4><p>Lunes a Sábado</p><p>3:00 PM - 7:30 PM</p></div>
             </div>
             <div class="mt-8 pt-8 border-t border-white/20 text-sm text-white/70">
                 <p>&copy; 2024 VALÚ Chocobananas. Todos los derechos reservados.</p>
-                <!-- Bot & Landing promotional footer -->
                 <div class="mt-4">
                     <p class="text-xs text-white/50">
                         Desarrollado con ❤️ por 
@@ -171,70 +233,13 @@
             </div>
         </div>
     </footer>
-
-    <!-- Cart Modal -->
-    <div id="cart-overlay" class="cart-overlay"></div>
-    <div id="cart-modal" class="cart-modal shadow-2xl">
-        <div class="flex justify-between items-center p-4 border-b">
-            <h2 class="text-2xl font-bold text-gray-800">Tu Pedido</h2>
-            <button id="close-cart-button" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
-        </div>
-        
-        <div id="cart-items" class="flex-grow p-4 overflow-y-auto">
-            <!-- Cart items will be injected here -->
-        </div>
-
-        <div class="p-4 border-t bg-gray-50">
-            <div class="flex justify-between items-center font-bold text-xl mb-4 text-gray-800">
-                <span>Total:</span>
-                <span id="cart-total">$0.00</span>
-            </div>
-            <div id="checkout-form" class="hidden">
-                <!-- Bank Details Section -->
-                <div class="bg-blue-50 border border-blue-200 text-blue-800 p-3 rounded-lg mb-4 text-sm">
-                    <h4 class="font-bold mb-2 text-center">Datos para Transferencia</h4>
-                    <p><strong>Banco:</strong> Banco Pichincha</p>
-                    <p><strong>Cuenta de Ahorros:</strong> 1234567890</p>
-                    <p><strong>A nombre de:</strong> VALÚ Chocobananas S.A.S</p>
-                    <p><strong>RUC/CI:</strong> 1234567890001</p>
-                </div>
-
-                <h3 class="font-bold text-lg mb-3 text-center text-gray-800">Completa tus datos para enviar</h3>
-                <input type="text" id="customer-name" placeholder="Tu Nombre Completo *" required class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none">
-                <input type="tel" id="customer-phone" placeholder="Tu Número de WhatsApp *" required class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none">
-                <textarea id="customer-address" placeholder="Tu Dirección y Referencia *" required rows="2" class="w-full border-2 p-2 rounded-lg mb-2 focus:border-orange-400 focus:outline-none"></textarea>
-                
-                <!-- Location and Payment Proof Buttons -->
-                <div class="grid grid-cols-2 gap-2 mb-4">
-                    <button id="share-location-btn" class="w-full bg-blue-500 text-white text-sm font-bold py-2 px-2 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-1">
-                        <i class="fas fa-map-marker-alt"></i> Compartir Ubicación
-                    </button>
-                    <label for="payment-proof-input" class="w-full bg-gray-500 text-white text-sm font-bold py-2 px-2 rounded-full hover:bg-gray-600 transition-colors flex items-center justify-center gap-1 cursor-pointer">
-                        <i class="fas fa-paperclip"></i> Adjuntar Comprobante
-                    </label>
-                    <input type="file" id="payment-proof-input" class="hidden" accept="image/*">
-                </div>
-                <p id="location-status" class="text-xs text-center text-green-600 font-semibold mb-2"></p>
-                <p id="payment-status" class="text-xs text-center text-green-600 font-semibold mb-2"></p>
-
-                <p class="text-xs text-gray-500 mb-4">* Campos obligatorios</p>
-                <button id="send-order-button" class="w-full bg-green-500 text-white font-bold py-3 rounded-full hover:bg-green-600 transition-colors flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp"></i> Enviar Pedido por WhatsApp
-                </button>
-            </div>
-            <button id="checkout-button" class="w-full bg-brand-orange text-white font-bold py-3 rounded-full hover:bg-brand-orange-dark transition-colors">
-                Continuar al Pago
-            </button>
-        </div>
-    </div>
     
     <!-- Confirmation Modal -->
-    <div id="confirmation-modal" class="fixed inset-0 bg-black/60 z-[1002] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+    <div id="notification-modal" class="fixed inset-0 bg-black/60 z-[1002] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
         <div class="bg-white rounded-xl p-8 text-center shadow-2xl max-w-sm transform scale-95 transition-transform duration-300">
             <i class="fas fa-check-circle text-green-500 text-5xl mb-4"></i>
-            <h2 class="text-2xl font-bold brand-brown-text mb-2">¡Gracias por tu compra!</h2>
-            <p class="text-gray-600 mb-6">Hemos abierto WhatsApp para que envíes tu pedido. ¡Lo prepararemos enseguida!</p>
-            <button id="close-confirmation-btn" class="bg-brand-green text-white font-bold py-2 px-6 rounded-full">Entendido</button>
+            <h2 id="notification-message" class="text-xl font-bold brand-brown-text"></h2>
+            <button id="close-notification-btn" class="mt-6 bg-brand-green text-white font-bold py-2 px-6 rounded-full">Entendido</button>
         </div>
     </div>
 
@@ -242,42 +247,47 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const products = [
-            { id: 1, name: 'Crujiente de Maní', price: 1.00, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible!' },
-            { id: 2, name: 'Fiesta de Chispas', price: 1.00, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión!' },
-            { id: 3, name: 'Sueño Blanco', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Delicado chocolate blanco con chispas de chocolate oscuro. ¡Un contraste delicioso!' },
-            { id: 4, name: 'Galleta Manía', price: 1.00, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación!' },
-            { id: 5, name: 'Choco-Chispas', price: 1.00, img: 'https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp', desc: 'Para los verdaderos amantes del chocolate. ¡Doble dosis de sabor y textura!' },
-            { id: 6, name: 'Nieve de Coco', price: 1.00, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco.' },
-            { id: 7, name: 'Corazón de Amor', price: 1.00, img: 'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp', desc: 'El clásico de chocolate con un toque especial de amor. ¡Ideal para compartir!' },
-            { id: 8, name: 'Doble Chocolate', price: 1.00, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'Base de chocolate oscuro con un elegante decorado de chocolate blanco.' },
-            { id: 9, name: 'Explosión Crujiente', price: 1.00, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: 'Una capa de chocolate cubierta con arroz inflado achocolatado. ¡Súper crujiente!' },
-            { id: 10, name: 'Fresa Pasión', price: 1.00, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Una dulce cobertura de chocolate con un toque de fresa y decoraciones románticas.' },
-            { id: 11, name: 'Almendra Tostada', price: 1.00, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Chocolate premium cubierto con trocitos de almendra tostada para un sabor sofisticado.' }
+            // $1.00
+            { id: 1, name: 'Clásica Negra', price: 1.00, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'La cobertura de chocolate oscuro que nunca falla. Simple, clásica y deliciosa.' },
+            { id: 2, name: 'Clásica Blanca', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Una suave y dulce cobertura de chocolate blanco para una experiencia celestial.' },
+            // $1.25
+            { id: 3, name: 'Oreo', price: 1.25, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Tu galleta favorita triturada sobre una capa de chocolate. ¡La mejor combinación!' },
+            { id: 4, name: 'Tango', price: 1.25, img: 'https://placehold.co/400x224/ffffff/3D2B1F?text=Tango', desc: 'Crujientes trocitos de galleta tipo wafer Tango para una textura inigualable.' },
+            { id: 5, name: 'Grageas', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Bañada en chocolate y cubierta con una explosión de grageas de colores. ¡Pura diversión!' },
+            { id: 6, name: 'Maní', price: 1.25, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'La combinación perfecta de chocolate cremoso y maní tostado. ¡Un clásico irresistible!' },
+            { id: 7, name: 'Chicle', price: 1.25, img: 'https://placehold.co/400x224/ffffff/3D2B1F?text=Chicle', desc: 'Una cobertura divertida con chispas sabor a chicle que te sorprenderá.' },
+            { id: 8, name: 'Coco', price: 1.25, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Un viaje tropical con cada mordida. Bañada en chocolate y cubierta de coco fresco.' },
+            { id: 9, name: 'Quipitos', price: 1.25, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: '¡Una explosión de sabor! Cubierta con el inconfundible polvo crujiente de Quipitos.' },
+            { id: 10, name: 'Fresa', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Una dulce cobertura de chocolate con un toque de fresa y decoraciones románticas.' },
+            // $1.50
+            { id: 11, name: 'Oreo Chocolate Blanco', price: 1.50, img: 'https://placehold.co/400x224/ffffff/3D2B1F?text=Oreo+Blanco', desc: 'La combinación perfecta de chocolate blanco cremoso con trocitos de galleta Oreo.' },
+            { id: 12, name: 'Mixta (Menta y Oreo)', price: 1.50, img: 'https://placehold.co/400x224/ffffff/3D2B1F?text=Mixta', desc: 'Lo mejor de dos mundos: una mitad refrescante de menta y la otra de crujiente Oreo.' },
+            { id: 13, name: 'Rocklets', price: 1.50, img: 'https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp', desc: 'Una colorida y crujiente cobertura con los clásicos confites de chocolate Rocklets.' },
+            // $2.50
+            { id: 14, name: 'Rellena de Cóctel de Café', price: 2.50, img: 'https://placehold.co/400x224/ffffff/3D2B1F?text=Rellena+Café', desc: 'Sorpresa en el interior: un cremoso relleno con un intenso sabor a cóctel de café.' },
+            { id: 15, name: 'Rellena de Manjar y Almendras', price: 2.50, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Un corazón de manjar de leche y almendras tostadas cubierto del mejor chocolate.' }
         ];
 
+        // DOM Elements
         const productList = document.getElementById('product-list');
         const cartButton = document.getElementById('cart-button');
-        const closeCartButton = document.getElementById('close-cart-button');
-        const cartModal = document.getElementById('cart-modal');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartTotalEl = document.getElementById('cart-total');
         const cartCountEl = document.getElementById('cart-count');
-        const checkoutButton = document.getElementById('checkout-button');
-        const checkoutForm = document.getElementById('checkout-form');
-        const sendOrderButton = document.getElementById('send-order-button');
-        const shareLocationBtn = document.getElementById('share-location-btn');
-        const paymentProofInput = document.getElementById('payment-proof-input');
-        const locationStatus = document.getElementById('location-status');
-        const paymentStatus = document.getElementById('payment-status');
-        const confirmationModal = document.getElementById('confirmation-modal');
-        const closeConfirmationBtn = document.getElementById('close-confirmation-btn');
+        const notificationModal = document.getElementById('notification-modal');
+        const notificationMessage = document.getElementById('notification-message');
+        const closeNotificationBtn = document.getElementById('close-notification-btn');
+        const orderForm = document.getElementById('order-form');
+        const checkoutSummary = document.getElementById('checkout-summary');
+        const clearCartBtn = document.getElementById('clear-cart-btn');
+        const cartEmptyMessage = document.getElementById('cart-empty-message');
+        const cartContent = document.getElementById('cart-content');
+        const shareLocationBtn = document.getElementById('share-location-btn-checkout');
+        const locationStatus = document.getElementById('location-status-checkout');
 
+        // App State
         let cart = {};
         let sharedLocation = null;
-        let paymentProofFile = null;
 
-        // 1. Render Products
+        // --- RENDER FUNCTIONS ---
         function renderProducts() {
             productList.innerHTML = '';
             products.forEach(product => {
@@ -289,7 +299,12 @@
                         <h3 class="text-xl font-bold mb-2 brand-brown-text">${product.name}</h3>
                         <p class="text-sm flex-grow text-gray-600">${product.desc}</p>
                         <p class="font-bold brand-orange-text mt-2 text-lg">$${product.price.toFixed(2)}</p>
-                        <button class="add-to-cart-btn mt-4 bg-brand-green text-white font-bold py-2 px-4 rounded-full hover:bg-brand-green-dark transition-colors" data-id="${product.id}">
+                        <div class="flex items-center justify-center space-x-4 my-4">
+                            <button class="quantity-btn minus-btn bg-gray-200 rounded-full w-8 h-8 text-lg font-bold text-gray-700">-</button>
+                            <span class="quantity-value text-lg font-bold">1</span>
+                            <button class="quantity-btn plus-btn bg-gray-200 rounded-full w-8 h-8 text-lg font-bold text-gray-700">+</button>
+                        </div>
+                        <button class="add-to-cart-btn bg-brand-green text-white font-bold py-2 px-4 rounded-full hover:bg-brand-green-dark transition-colors" data-id="${product.id}">
                             Añadir al Carrito
                         </button>
                     </div>
@@ -298,141 +313,95 @@
             });
         }
 
-        // 2. Cart Logic (addToCart, updateQuantity, updateCart)
-        function addToCart(productId) {
+        // --- CART LOGIC ---
+        function addToCart(productId, quantity = 1) {
             if (cart[productId]) {
-                cart[productId].quantity++;
+                cart[productId].quantity += quantity;
             } else {
                 const product = products.find(p => p.id == productId);
-                cart[productId] = { ...product, quantity: 1 };
+                cart[productId] = { ...product, quantity: quantity };
             }
-            updateCart();
+            updateCartUI();
         }
 
-        function updateQuantity(productId, newQuantity) {
-            if (cart[productId]) {
-                if (newQuantity > 0) {
-                    cart[productId].quantity = newQuantity;
-                } else {
-                    delete cart[productId];
-                }
-                updateCart();
-            }
+        function updateCartUI() {
+            let totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
+            updateCheckoutPage();
         }
+        
+        function updateCheckoutPage() {
+            if (document.getElementById('checkout-page').classList.contains('hidden')) return;
 
-        function updateCart() {
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-            let totalItems = 0;
+            let subtotal = 0;
+            let summaryHTML = '';
 
             if (Object.keys(cart).length === 0) {
-                cartItemsContainer.innerHTML = '<p class="text-center text-gray-500 py-8">Tu carrito está vacío.</p>';
-                checkoutButton.classList.add('hidden');
-                checkoutForm.classList.add('hidden');
-            } else {
-                checkoutButton.classList.remove('hidden');
-                for (const id in cart) {
-                    const item = cart[id];
-                    total += item.price * item.quantity;
-                    totalItems += item.quantity;
-                    const itemEl = document.createElement('div');
-                    itemEl.className = 'flex items-center gap-4 py-3 border-b';
-                    itemEl.innerHTML = `
-                        <img src="${item.img}" class="w-16 h-16 object-contain rounded-md bg-gray-100" onerror="this.onerror=null;this.src='https://placehold.co/64x64/e0e7ff/302b63?text=V';">
-                        <div class="flex-grow">
-                            <h4 class="font-bold text-gray-800">${item.name}</h4>
-                            <p class="text-sm text-gray-600">$${item.price.toFixed(2)}</p>
+                cartEmptyMessage.classList.remove('hidden');
+                cartContent.classList.add('hidden');
+                return;
+            }
+            
+            cartEmptyMessage.classList.add('hidden');
+            cartContent.classList.remove('hidden');
+
+            for (const id in cart) {
+                const item = cart[id];
+                subtotal += item.price * item.quantity;
+                summaryHTML += `
+                    <div class="py-2 border-b last:border-b-0 flex justify-between items-center">
+                        <div>
+                            <p class="font-bold">${item.quantity} x ${item.name}</p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <input type="number" value="${item.quantity}" min="1" class="w-14 border-2 text-center rounded-md quantity-input" data-id="${id}">
-                            <button class="text-red-500 hover:text-red-700 remove-btn text-xl" data-id="${id}">&times;</button>
-                        </div>
-                    `;
-                    cartItemsContainer.appendChild(itemEl);
-                }
+                        <span class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
             }
 
-            cartTotalEl.textContent = `$${total.toFixed(2)}`;
-            cartCountEl.textContent = totalItems;
+            summaryHTML += `
+                <div class="mt-4 border-t pt-4 space-y-2">
+                    <div class="flex justify-between"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+                    <div class="flex justify-between font-bold text-lg"><span>Total</span><span>$${subtotal.toFixed(2)}</span></div>
+                </div>
+            `;
+            checkoutSummary.innerHTML = summaryHTML;
         }
 
-        // 3. Event Listeners
+        // --- EVENT LISTENERS ---
         productList.addEventListener('click', (e) => {
+            const card = e.target.closest('.flex-col');
+            if (!card) return;
+
+            if (e.target.classList.contains('quantity-btn')) {
+                const valueSpan = card.querySelector('.quantity-value');
+                let currentValue = parseInt(valueSpan.textContent);
+                if (e.target.classList.contains('plus-btn')) currentValue++;
+                else if (e.target.classList.contains('minus-btn') && currentValue > 1) currentValue--;
+                valueSpan.textContent = currentValue;
+            }
+
             if (e.target.classList.contains('add-to-cart-btn')) {
                 const id = e.target.dataset.id;
-                addToCart(id);
-                e.target.textContent = '¡Añadido!';
-                setTimeout(() => { e.target.textContent = 'Añadir al Carrito'; }, 1000);
+                const quantity = parseInt(card.querySelector('.quantity-value').textContent);
+                addToCart(id, quantity);
+                showNotification(`${quantity} ${products.find(p=>p.id==id).name}(s) añadido(s) al carrito!`);
+                card.querySelector('.quantity-value').textContent = '1';
             }
         });
-
-        cartItemsContainer.addEventListener('change', (e) => {
-            if (e.target.classList.contains('quantity-input')) {
-                const id = e.target.dataset.id;
-                const quantity = parseInt(e.target.value, 10);
-                updateQuantity(id, quantity);
-            }
+        
+        clearCartBtn.addEventListener('click', () => {
+            cart = {};
+            updateCartUI();
         });
 
-        cartItemsContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-btn')) {
-                const id = e.target.dataset.id;
-                updateQuantity(id, 0);
-            }
-        });
-
-        cartButton.addEventListener('click', () => {
-            cartModal.classList.add('open');
-            cartOverlay.classList.add('visible');
-        });
-
-        closeCartButton.addEventListener('click', () => {
-            cartModal.classList.remove('open');
-            cartOverlay.classList.remove('visible');
-        });
-
-        cartOverlay.addEventListener('click', () => {
-            cartModal.classList.remove('open');
-            cartOverlay.classList.remove('visible');
-        });
-
-        checkoutButton.addEventListener('click', () => {
-            checkoutButton.classList.add('hidden');
-            checkoutForm.classList.remove('hidden');
-        });
-
-        shareLocationBtn.addEventListener('click', () => {
-            if (navigator.geolocation) {
-                locationStatus.textContent = 'Obteniendo ubicación...';
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                    locationStatus.textContent = '¡Ubicación compartida!';
-                }, () => {
-                    locationStatus.textContent = 'No se pudo obtener la ubicación.';
-                });
-            } else {
-                locationStatus.textContent = 'Geolocalización no es soportada.';
-            }
-        });
-
-        paymentProofInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                paymentProofFile = e.target.files[0];
-                paymentStatus.textContent = `Archivo: ${paymentProofFile.name}`;
-            } else {
-                paymentProofFile = null;
-                paymentStatus.textContent = '';
-            }
-        });
-
-        sendOrderButton.addEventListener('click', () => {
-            const name = document.getElementById('customer-name').value.trim();
-            const phone = document.getElementById('customer-phone').value.trim();
-            const address = document.getElementById('customer-address').value.trim();
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
 
             if (!name || !phone || !address) {
-                alert('Por favor, completa todos los campos obligatorios (*).');
+                alert('Por favor, completa todos los campos obligatorios.');
                 return;
             }
 
@@ -454,49 +423,64 @@
             if (sharedLocation) {
                 message += `*Ubicación (Google Maps):* ${sharedLocation}\n`;
             }
-            if (paymentProofFile) {
-                message += `\n*Adjunto el comprobante de pago en el siguiente mensaje.*`;
-            }
-
-            message += `\n¡Espero su confirmación! Gracias. 😊`;
             
-            const whatsappNumber = '593960499387';
+            message += `\n*IMPORTANTE: Para confirmar tu pedido, por favor adjunta tu comprobante de pago aquí en el chat.*`;
+            message += `\n\n¡Espero su confirmación! Gracias. 😊`;
+            
+            const whatsappNumber = '593963829892';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
             window.open(whatsappUrl, '_blank');
-            showConfirmationModal();
-        });
-
-        function showConfirmationModal() {
-            confirmationModal.classList.remove('opacity-0', 'pointer-events-none');
-            confirmationModal.querySelector('div').classList.remove('scale-95');
-        }
-
-        function hideConfirmationModal() {
-            confirmationModal.classList.add('opacity-0', 'pointer-events-none');
-            confirmationModal.querySelector('div').classList.add('scale-95');
             
-            // Reset form and cart
             cart = {};
             sharedLocation = null;
-            paymentProofFile = null;
-            updateCart();
-            checkoutForm.classList.add('hidden');
-            document.getElementById('customer-name').value = '';
-            document.getElementById('customer-phone').value = '';
-            document.getElementById('customer-address').value = '';
-            paymentProofInput.value = '';
-            locationStatus.textContent = '';
-            paymentStatus.textContent = '';
-            cartModal.classList.remove('open');
-            cartOverlay.classList.remove('visible');
+            orderForm.reset();
+            updateCartUI();
+            showPage('home');
+            alert('¡Gracias por tu compra! Tu pedido se está procesando.');
+        });
+        
+        shareLocationBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                locationStatus.textContent = 'Obteniendo ubicación...';
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                    locationStatus.textContent = '¡Ubicación compartida!';
+                }, () => {
+                    locationStatus.textContent = 'No se pudo obtener la ubicación.';
+                });
+            } else {
+                locationStatus.textContent = 'Geolocalización no es soportada.';
+            }
+        });
+        
+        // --- PAGE NAVIGATION ---
+        const pages = document.querySelectorAll('main');
+        window.showPage = (pageId) => {
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(`${pageId}-page`).classList.remove('hidden');
+            window.scrollTo(0, 0);
+            if (pageId === 'checkout') updateCheckoutPage();
+        };
+
+        // --- NOTIFICATION MODAL ---
+        function showNotification(message) {
+            notificationMessage.textContent = message;
+            notificationModal.classList.remove('opacity-0', 'pointer-events-none');
+            notificationModal.querySelector('div').classList.remove('scale-95');
         }
 
-        closeConfirmationBtn.addEventListener('click', hideConfirmationModal);
+        function hideNotification() {
+            notificationModal.classList.add('opacity-0', 'pointer-events-none');
+            notificationModal.querySelector('div').classList.add('scale-95');
+        }
 
-        // Initial Load
+        closeNotificationBtn.addEventListener('click', hideNotification);
+
+        // --- INITIAL LOAD ---
         renderProducts();
-        updateCart();
+        updateCartUI();
     });
     </script>
 </body>
