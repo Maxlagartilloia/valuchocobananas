@@ -252,25 +252,25 @@
     document.addEventListener('DOMContentLoaded', () => {
         const products = [
             // $1.00
-            { id: 1, name: 'Valú Ébano', price: 1.00, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp', desc: 'Nuestra clásica Chocobanana bañada en doble capa de chocolate negro intenso.' },
+            { id: 1, name: 'Clasica Negra', price: 1.00, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp', desc: 'Nuestra clásica Chocobanana bañada en doble capa de chocolate negro intenso.' },
             // $1.25
-            { id: 2, name: 'Valú Ivory', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Nuestra clásica banana cubierta de chocolate blanco cremoso, suave y delicioso, ideal para quienes aman lo dulce y delicado' },
-            { id: 3, name: 'Valú tango', price: 1.25, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Banana cubierta con chocolate negro, y topping de galleta tango con crema de vainilla triturada, una combinación irresistible' },
-            { id: 4, name: 'Valú Chicle Black', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de chicle al final' },
-            { id: 5, name: 'Valú chicle intenso', price: 1.25, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Banana cubierta con chocolate turquesa con una bolita de chicle al final' },
-            { id: 6, name: 'Valú Choco Cookie', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Banana bañada en chocolate, cubierta con crujientes galletas oreo. Dulce, crujiente y deliciosa que te hará caer en la tentación.”' },
+            { id: 2, name: 'Clasica Blanca', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Nuestra clásica banana cubierta de chocolate blanco cremoso, suave y delicioso, ideal para quienes aman lo dulce y delicado' },
+            { id: 3, name: 'Galleta Tángo', price: 1.25, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Banana cubierta con chocolate negro, y topping de galleta tango con crema de vainilla triturada, una combinación irresistible' },
+            { id: 4, name: 'Chile CH. Negro', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de chicle al final' },
+            { id: 5, name: 'Chicle CH. Turquesa', price: 1.25, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Banana cubierta con chocolate turquesa con una bolita de chicle al final' },
+            { id: 6, name: 'Galleta Oreo', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Banana bañada en chocolate, cubierta con crujientes galletas oreo. Dulce, crujiente y deliciosa que te hará caer en la tentación.”' },
             { id: 7, name: 'Valú Fresa', price: 1.25, img: 'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp', desc: 'Nuestra Chocobanana bañada en chocolate rojo, con auténtico sabor a fresa. Dulzura y frescura en perfecta armonía.' },
-            { id: 8, name: 'Valú Crunch', price: 1.25, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'banana bañada en chocolate negro y cubierta con maní triturado ligeramente salado.' },
-            { id: 9, name: 'Valú Color Pop', price: 1.25, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Banana bañada en chocolate negro y cubierta con crujientes grageas anisadas de colores. Dulce, divertida y llena de sabor.' },
+            { id: 8, name: 'Maní', price: 1.25, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'banana bañada en chocolate negro y cubierta con maní triturado ligeramente salado.' },
+            { id: 9, name: 'Grajeas', price: 1.25, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Banana bañada en chocolate negro y cubierta con crujientes grageas anisadas de colores. Dulce, divertida y llena de sabor.' },
             { id: 10, name: 'Valú Tropi coco', price: 1.25, img: 'https://i.postimg.cc/CMJc3QV7/1000670548-removebg-preview.webp', desc: 'Banana cubierta con chocolate negro y un baño extremo de coco seco rallado' },
             { id: 11, name: 'Valú pops', price: 1.25, img: 'https://i.postimg.cc/gjr3F4vt/1000670559-removebg-preview.webp', desc: 'Es la mezcla perfecta del chocolate blanco con caramelos en polvo que explotan tu boca' },
             // $1.50
-            { id: 12, name: 'Valu Iris', price: 1.50, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: 'Banana bañada en chocolate negro con crujientes Rocklets triturados, una explosión de color y sabor que te encantará' },
+            { id: 12, name: 'Chin Chin', price: 1.50, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: 'Banana bañada en chocolate negro con crujientes lentejas de colores, una explosión de color y sabor que te encantará' },
             { id: 13, name: 'Valú Mixta', price: 1.50, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'Banana bañada en chocolate verde, con crujientes trozos de Oreo y un toque fresco de menta. ¡Refrescante, dulce y divertida, que te dejará congelado' },
             { id: 14, name: 'Valú black&white', price: 1.50, img: 'https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp', desc: 'Banana cubierta con chocolate blanco y trozos crocantes de galleta oreo' },
             // $2.50
-            { id: 15, name: 'Valú Espresso', price: 2.50, img: 'https://i.postimg.cc/9Qq5FhmC/1000670556-removebg-preview-1.webp', desc: 'Banana bañada en chocolate, rellena con exquisito cóctel de café y acompañada de crujientes nibs de café. Dulce, cremoso y sofisticado, ideal para los amantes del café y el chocolate' },
-            { id: 16, name: 'Valú Dulce Tentación', price: 2.50, img: 'https://i.postimg.cc/tgtcYRLQ/1000670558-removebg-preview.webp', desc: 'banana bañada en chocolate y rellena con cremoso manjar y trozos de almendra. Dulce, crujiente y sofisticada, una experiencia irresistible para los paladares más exigentes.' },
+            { id: 15, name: 'Rellena de Coctel de Café', price: 2.50, img: 'https://i.postimg.cc/9Qq5FhmC/1000670556-removebg-preview-1.webp', desc: 'Banana bañada en chocolate, rellena con exquisito cóctel de café y acompañada de crujientes nibs de café. Dulce, cremoso y sofisticado, ideal para los amantes del café y el chocolate' },
+            { id: 16, name: 'Rellena de manjar y almendras', price: 2.50, img: 'https://i.postimg.cc/tgtcYRLQ/1000670558-removebg-preview.webp', desc: 'banana bañada en chocolate y rellena con cremoso manjar y trozos de almendra. Dulce, crujiente y sofisticada, una experiencia irresistible para los paladares más exigentes.' },
         ];
 
         // DOM Elements
