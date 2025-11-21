@@ -87,6 +87,46 @@
                          0 0 20px rgba(245, 124, 0, 0.5);
         }
 
+        /* Memory game cards */
+        .memory-card {
+            perspective: 800px;
+        }
+        .memory-inner {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* cuadrado */
+            transform-style: preserve-3d;
+            transition: transform 0.4s;
+            cursor: pointer;
+        }
+        .memory-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .memory-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .memory-front {
+            background: #F57C00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        .memory-back {
+            transform: rotateY(180deg);
+            background: #fff;
+        }
+        .memory-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -99,19 +139,19 @@
         <div></div>
     </div>
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <header class="bg-white/95 backdrop-blur shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-0 md:py-1 flex justify-between items-center">
             <a href="#" onclick="showPage('home')" class="flex items-center gap-3">
                 <img src="https://i.postimg.cc/66R0cb7k/305490667-575197724237113-2468008211469284987-n-1.webp"
-     alt="Logo de VALÚ Chocobananas"
-     class="h-[10rem] md:h-[13rem] w-auto transition-all ml-6 md:ml-10"
-     onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFF3E0/3D2B1F?text=V';">
-
+                     alt="Logo de VALÚ Chocobananas"
+                     class="h-[6rem] md:h-[8rem] w-auto transition-all ml-0 md:ml-4"
+                     onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFF3E0/3D2B1F?text=V';">
             </a>
             <nav class="hidden md:flex items-center gap-6 font-semibold brand-brown-text">
-                <a href="#productos" class="hover:brand-orange-text transition-colors">Productos</a>
-                <a href="#experiencia" class="hover:brand-orange-text transition-colors">Experiencia</a>
-                <a href="#footer-contact" class="hover:brand-orange-text transition-colors">Contacto</a>
+                <a href="#productos" class="hover:text-[#F57C00] transition-colors">Productos</a>
+                <a href="#experiencia" class="hover:text-[#F57C00] transition-colors">Experiencia</a>
+                <a href="#puzzle-valu" class="hover:text-[#F57C00] transition-colors">Juega</a>
+                <a href="#footer-contact" class="hover:text-[#F57C00] transition-colors">Contacto</a>
             </nav>
             <button id="cart-button" onclick="showPage('checkout')" class="relative bg-brand-orange text-white px-4 py-2 rounded-full font-bold hover:bg-brand-orange-dark transition-colors flex items-center gap-2">
                 <i class="fas fa-shopping-cart"></i>
@@ -121,11 +161,40 @@
         </div>
     </header>
 
+    <!-- HOME PAGE -->
     <main id="home-page" class="relative z-10">
-        <section class="py-20 md:py-24">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white glossy-text">Más que un postre, una experiencia.</h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Te esperamos en nuestro ambiente confortable que huele riquísimo. Descubre una amplia carta de chocobananas que no sabrás cuál elegir.</p>
+        <!-- HERO con foto arriba + dirección visible -->
+        <section class="py-12 md:py-16">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-4 md:space-y-6 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-2 text-white glossy-text">
+                        Más que un postre,<br>una experiencia VALÚ.
+                    </h1>
+                    <p class="text-lg md:text-xl max-w-xl mx-auto md:mx-0 text-gray-200">
+                        Tu rincón dulce en Shushufindi. Chocobananas con personalidad propia, en un ambiente que huele delicioso.
+                    </p>
+                    <div class="bg-white/95 rounded-2xl shadow-lg p-4 inline-block text-left">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                            Nuestra ubicación
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <i class="fas fa-map-marker-alt text-brand-orange mr-2"></i>
+                            Siona y 7 de agosto, Shushufindi, Ecuador
+                        </p>
+                        <a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank"
+                           class="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-brand-green hover:text-brand-orange transition-colors">
+                            Abrir en Google Maps <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-brand-orange/70 max-w-md w-full">
+                        <img src="https://i.postimg.cc/htnht0Qv/504974765-1058337899724199-7091260268685360836-n.webp"
+                             alt="Local de VALÚ Chocobananas"
+                             class="w-full h-72 md:h-80 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=VALÚ';">
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -152,46 +221,188 @@
                 </div>
             </div>
         </section>
+
+        <!-- JUEGO DE MEMORIA VALÚ -->
+        <section id="puzzle-valu" class="py-12 bg-black/40 border-t border-white/10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-8">
+                    <p class="text-xs tracking-[0.3em] uppercase text-brand-orange mb-2 font-semibold">
+                        Juego VALÚ
+                    </p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                        Encuentra las parejas de Chocobananas 🍌🧠
+                    </h2>
+                    <p class="text-sm md:text-base text-gray-200 max-w-2xl mx-auto">
+                        Toca las cartas, memoriza las Chocobananas y forma todas las parejas en el menor número de movimientos.
+                    </p>
+                </div>
+
+                <div class="max-w-md mx-auto bg-white/95 rounded-3xl shadow-2xl p-5 md:p-6">
+                    <div class="flex items-center justify-between gap-4 text-xs md:text-sm text-gray-700 mb-3">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-hand-pointer text-brand-orange"></i>
+                            Movimientos: <span id="memory-moves">0</span>
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-check-double text-brand-green"></i>
+                            Parejas: <span id="memory-pairs">0</span>/<span id="memory-total">0</span>
+                        </span>
+                        <button id="memory-restart" type="button"
+                                class="px-4 py-2 bg-brand-orange text-white rounded-full text-xs md:text-sm font-semibold flex items-center gap-2 hover:bg-brand-orange-dark transition">
+                            <i class="fa-solid fa-rotate-right"></i> Nuevo juego
+                        </button>
+                    </div>
+
+                    <div id="memory-grid" class="grid grid-cols-4 gap-2 mt-3"></div>
+
+                    <p class="text-[10px] md:text-xs text-gray-600 text-center mt-3">
+                        En celular: toca una carta, recuerda la Chocobanana y encuentra su pareja.  
+                        Perfecto para jugar mientras esperas tu orden 😋
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- CHECKOUT PAGE (CON MESA / DOMICILIO) -->
     <main id="checkout-page" class="hidden relative z-10 py-16">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl text-center text-white glossy-text mb-12">Finalizar Pedido</h2>
-            <div id="cart-empty-message" class="hidden text-center py-12 bg-white/90 rounded-2xl">
+
+            <div id="cart-empty-message" class="hidden text-center py-12 bg-white/90 rounded-2xl max-w-xl mx-auto">
                 <i class="fas fa-shopping-cart text-gray-300 text-6xl mb-4"></i>
                 <p class="text-gray-500 text-xl">Tu carrito está vacío.</p>
-                <button onclick="showPage('home')" class="mt-6 bg-brand-orange text-white text-lg font-semibold py-3 px-8 rounded-full">Ver Productos</button>
+                <button onclick="showPage('home')" class="mt-6 bg-brand-orange text-white text-lg font-semibold py-3 px-8 rounded-full hover:bg-brand-orange-dark">
+                    Ver Productos
+                </button>
             </div>
+
             <div id="cart-content" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Modalidad + Datos -->
                 <div>
-                    <h3 class="text-2xl text-white mb-6">1. Tus Datos de Envío</h3>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <form id="order-form">
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-bold mb-2">Nombre Completo</label>
-                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg" placeholder="Tu nombre" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 font-bold mb-2">Número de WhatsApp</label>
-                                <input type="tel" id="phone" name="phone" class="w-full px-3 py-2 border rounded-lg" placeholder="Ej: 0999999999" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="address" class="block text-gray-700 font-bold mb-2">Dirección de Entrega</label>
-                                <textarea id="address" name="address" rows="3" class="w-full px-3 py-2 border rounded-lg" placeholder="Calle, barrio, referencia..." required></textarea>
-                            </div>
-                             <div class="flex justify-center">
-                                <button type="button" id="share-location-btn-checkout" class="w-full bg-blue-500 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
-                                    <i class="fas fa-map-marker-alt"></i> Compartir Ubicación
-                                </button>
-                            </div>
-                            <p id="location-status-checkout" class="text-xs text-center text-green-600 font-semibold mt-2"></p>
-                        </form>
+                    <h3 class="text-2xl text-white mb-5">1. Modalidad y Datos</h3>
+
+                    <!-- Radios mesa / domicilio -->
+                    <div class="mb-6">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <label class="flex items-center bg-white/95 p-3 rounded-xl border border-brand-green/60 cursor-pointer flex-1 transition hover:bg-white">
+                                <input
+                                    type="radio"
+                                    name="orderType"
+                                    value="dineIn"
+                                    checked
+                                    class="mr-3 text-brand-orange focus:ring-brand-orange border-gray-300"
+                                    id="radio-dine-in">
+                                <span class="font-bold text-gray-800 text-sm md:text-base">
+                                    <i class="fas fa-utensils mr-2 text-brand-orange"></i>
+                                    Servir en mesa
+                                </span>
+                            </label>
+                            <label class="flex items-center bg-white/95 p-3 rounded-xl border border-brand-green/60 cursor-pointer flex-1 transition hover:bg-white">
+                                <input
+                                    type="radio"
+                                    name="orderType"
+                                    value="delivery"
+                                    class="mr-3 text-brand-orange focus:ring-brand-orange border-gray-300"
+                                    id="radio-delivery">
+                                <span class="font-bold text-gray-800 text-sm md:text-base">
+                                    <i class="fas fa-motorcycle mr-2 text-brand-orange"></i>
+                                    Entrega a domicilio
+                                </span>
+                            </label>
+                        </div>
                     </div>
+
+                    <form id="order-form" class="space-y-4">
+                        <!-- Campos para mesa -->
+                        <div id="dine-in-fields" class="bg-white p-6 rounded-lg shadow-md text-gray-800">
+                            <div class="mb-4">
+                                <label for="table-number" class="block text-gray-700 font-bold mb-2">
+                                    Número de mesa
+                                </label>
+                                <input
+                                    type="number"
+                                    id="table-number"
+                                    name="table-number"
+                                    class="w-full px-3 py-2 border rounded-lg focus:ring-brand-orange focus:border-brand-orange text-sm"
+                                    placeholder="Ej: 5"
+                                    min="1"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="client-name-local" class="block text-gray-700 font-bold mb-2">
+                                    Nombre (opcional)
+                                </label>
+                                <input
+                                    type="text"
+                                    id="client-name-local"
+                                    name="client-name-local"
+                                    class="w-full px-3 py-2 border rounded-lg focus:ring-brand-orange focus:border-brand-orange text-sm"
+                                    placeholder="Tu nombre">
+                            </div>
+                        </div>
+
+                        <!-- Campos para domicilio -->
+                        <div id="delivery-fields" class="bg-white p-6 rounded-lg shadow-md text-gray-800 hidden">
+                            <div class="mb-3">
+                                <label for="name" class="block text-gray-700 font-bold mb-2">
+                                    Nombre Completo
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="w-full px-3 py-2 border rounded-lg focus:ring-brand-orange focus:border-brand-orange text-sm"
+                                    placeholder="Tu nombre"
+                                    required
+                                    disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="block text-gray-700 font-bold mb-2">
+                                    Número de WhatsApp
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    class="w-full px-3 py-2 border rounded-lg focus:ring-brand-orange focus:border-brand-orange text-sm"
+                                    placeholder="Ej: 0999999999"
+                                    required
+                                    disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="block text-gray-700 font-bold mb-2">
+                                    Dirección de Entrega
+                                </label>
+                                <textarea
+                                    id="address"
+                                    name="address"
+                                    rows="3"
+                                    class="w-full px-3 py-2 border rounded-lg focus:ring-brand-orange focus:border-brand-orange text-sm resize-none"
+                                    placeholder="Calle, barrio, referencia..."
+                                    required
+                                    disabled></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <button
+                                    type="button"
+                                    id="share-location-btn-checkout"
+                                    class="w-full bg-blue-500 text-white text-sm font-bold py-2.5 px-4 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+                                    disabled>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Compartir ubicación (opcional)
+                                </button>
+                                <p id="location-status-checkout" class="text-xs text-center text-green-600 font-semibold mt-2"></p>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+
+                <!-- Resumen + Pago -->
                 <div>
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl text-white">2. Resumen de tu Pedido</h3>
-                        <button id="clear-cart-btn" title="Vaciar Carrito" class="text-red-300 hover:text-white text-sm font-semibold">Vaciar Carrito</button>
+                        <button id="clear-cart-btn" title="Vaciar Carrito" type="button" class="text-red-300 hover:text-white text-sm font-semibold">Vaciar Carrito</button>
                     </div>
                     <div id="checkout-summary" class="bg-white p-6 rounded-lg shadow-md">
                         <!-- El resumen del carrito se insertará aquí -->
@@ -204,9 +415,12 @@
                             <p><strong>A nombre de:</strong> Monica Ruilova</p>
                             <p><strong>C.I:</strong> 0921738837</p>
                         </div>
+                        <p class="mt-2 text-[11px] text-gray-500">
+                            *Adjunta el comprobante por WhatsApp al confirmar tu pedido.
+                        </p>
                     </div>
                     <button type="submit" form="order-form" id="submit-order-btn" class="w-full bg-brand-orange text-white text-lg font-semibold py-3 rounded-full mt-8 hover:bg-brand-orange-dark transition-colors flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp"></i> Realizar Pedido
+                        <i class="fab fa-whatsapp"></i> Enviar pedido por WhatsApp
                     </button>
                 </div>
             </div>
@@ -221,14 +435,24 @@
                     <a href="https://wa.me/593963829892" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fab fa-whatsapp mr-2"></i> +593 96 382 9892</a>
                     <p class="mt-2"><i class="fas fa-envelope mr-2"></i> valuchocobananas@gmail.com</p>
                 </div>
-                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4><a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank" class="inline-block hover:text-white transition-colors"><i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto</a><p>Shushufindi, Ecuador</p></div>
-                <div class="mb-6 md:mb-0"><h4 class="font-bold text-lg mb-2 text-white">Horario</h4><p>Lunes a Sábado</p><p>3:00 PM - 7:30 PM</p></div>
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Ubicación</h4>
+                    <a href="https://maps.app.goo.gl/ZjvLQER2vHgL6kSQ6" target="_blank" class="inline-block hover:text-white transition-colors">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Siona y 7 de agosto
+                    </a>
+                    <p>Shushufindi, Ecuador</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h4 class="font-bold text-lg mb-2 text-white">Horario</h4>
+                    <p>Lunes a Sábado</p>
+                    <p>3:00 PM - 7:30 PM</p>
+                </div>
             </div>
             <div class="mt-8 pt-8 border-t border-white/20 text-sm text-white/70">
                 <p>&copy; 2024 VALÚ Chocobananas. Todos los derechos reservados.</p>
                 <div class="mt-4">
                     <p class="text-xs text-white/50">
-                        Te gustaria tener una pagina como esta, dale clic aqui ➤ 
+                        Te gustaría tener una página como esta, dale clic aquí ➤ 
                         <a href="https://wa.me/593983397264?text=Hola%20Bot%20&%20Landing,%20estoy%20interesado%20en%20una%20página%20web%20como%20la%20de%20VALÚ%20Chocobananas." target="_blank" class="font-bold text-white/70 hover:text-white transition-colors">
                             Bot & Landing
                         </a>
@@ -247,16 +471,16 @@
         </div>
     </div>
 
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const products = [
             // $1.00
             { id: 1, name: 'Clasica Negra', price: 1.00, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp', desc: 'Nuestra clásica Chocobanana bañada en doble capa de chocolate negro intenso.' },
-            // $1.25
+            // $1.00
             { id: 2, name: 'Clasica Blanca', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Nuestra clásica banana cubierta de chocolate blanco cremoso, suave y delicioso, ideal para quienes aman lo dulce y delicado' },
+            // $1.25
             { id: 3, name: 'Galleta Tángo', price: 1.25, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Banana cubierta con chocolate negro, y topping de galleta tango con crema de vainilla triturada, una combinación irresistible' },
-            { id: 4, name: 'Chile CH. Negro', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de chicle al final' },
+            { id: 4, name: 'Chile CH. Negro', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de gicle al final' },
             { id: 5, name: 'Chicle CH. Turquesa', price: 1.25, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Banana cubierta con chocolate turquesa con una bolita de chicle al final' },
             { id: 6, name: 'Galleta Oreo', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Banana bañada en chocolate, cubierta con crujientes galletas oreo. Dulce, crujiente y deliciosa que te hará caer en la tentación.”' },
             { id: 7, name: 'Valú Fresa', price: 1.25, img: 'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp', desc: 'Nuestra Chocobanana bañada en chocolate rojo, con auténtico sabor a fresa. Dulzura y frescura en perfecta armonía.' },
@@ -275,7 +499,6 @@
 
         // DOM Elements
         const productList = document.getElementById('product-list');
-        const cartButton = document.getElementById('cart-button');
         const cartCountEl = document.getElementById('cart-count');
         const notificationModal = document.getElementById('notification-modal');
         const notificationMessage = document.getElementById('notification-message');
@@ -288,18 +511,39 @@
         const shareLocationBtn = document.getElementById('share-location-btn-checkout');
         const locationStatus = document.getElementById('location-status-checkout');
 
+        const dineInFields   = document.getElementById('dine-in-fields');
+        const deliveryFields = document.getElementById('delivery-fields');
+        const radioDineIn    = document.getElementById('radio-dine-in');
+        const radioDelivery  = document.getElementById('radio-delivery');
+
+        const nameInput            = document.getElementById('name');
+        const phoneInput           = document.getElementById('phone');
+        const addressInput         = document.getElementById('address');
+        const tableNumberInput     = document.getElementById('table-number');
+        const clientNameLocalInput = document.getElementById('client-name-local');
+
         // App State
         let cart = {};
         let sharedLocation = null;
+        let orderType = 'dineIn';
 
-        // --- RENDER FUNCTIONS ---
+        // Helpers
+        function setInputRequired(input, isRequired) {
+            if (!input) return;
+            input.required = isRequired;
+            input.disabled = !isRequired;
+        }
+
+        // RENDER de productos (manteniendo diseño VALÚ)
         function renderProducts() {
             productList.innerHTML = '';
             products.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'bg-white rounded-xl text-center overflow-hidden flex flex-col shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 hover:-translate-y-2';
                 card.innerHTML = `
-                    <div class="bg-gray-50"><img src="${product.img}" alt="${product.name}" class="w-full h-56 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x224/ffffff/3D2B1F?text=${product.name}';"></div>
+                    <div class="bg-gray-50">
+                        <img src="${product.img}" alt="${product.name}" class="w-full h-56 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x224/ffffff/3D2B1F?text=${product.name}';">
+                    </div>
                     <div class="p-6 flex-grow flex flex-col">
                         <h3 class="text-xl font-bold mb-2 brand-brown-text">${product.name}</h3>
                         <p class="text-sm flex-grow text-gray-600">${product.desc}</p>
@@ -318,47 +562,43 @@
             });
         }
 
-        // --- CART LOGIC ---
-        function addToCart(productId, quantity = 1) {
-            if (cart[productId]) {
-                cart[productId].quantity += quantity;
-            } else {
-                const product = products.find(p => p.id == productId);
-                cart[productId] = { ...product, quantity: quantity };
-            }
-            updateCartUI();
-        }
-
         function updateCartUI() {
             let totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
             cartCountEl.textContent = totalItems;
             updateCheckoutPage();
         }
-        
-        function updateCheckoutPage() {
-            if (document.getElementById('checkout-page').classList.contains('hidden')) return;
 
-            let subtotal = 0;
-            let summaryHTML = '';
+        function updateCheckoutPage() {
+            const checkoutPage = document.getElementById('checkout-page');
+            if (checkoutPage.classList.contains('hidden')) return;
 
             if (Object.keys(cart).length === 0) {
                 cartEmptyMessage.classList.remove('hidden');
                 cartContent.classList.add('hidden');
+                checkoutSummary.innerHTML = `
+                    <p class="text-gray-500 text-sm">
+                        Aún no has agregado productos a tu pedido.
+                    </p>
+                `;
                 return;
             }
-            
+
             cartEmptyMessage.classList.add('hidden');
             cartContent.classList.remove('hidden');
 
+            let subtotal = 0;
+            let summaryHTML = '';
+
             for (const id in cart) {
                 const item = cart[id];
-                subtotal += item.price * item.quantity;
+                const itemSubtotal = item.price * item.quantity;
+                subtotal += itemSubtotal;
                 summaryHTML += `
                     <div class="py-2 border-b last:border-b-0 flex justify-between items-center">
                         <div>
                             <p class="font-bold">${item.quantity} x ${item.name}</p>
                         </div>
-                        <span class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <span class="font-semibold">$${itemSubtotal.toFixed(2)}</span>
                     </div>
                 `;
             }
@@ -372,7 +612,45 @@
             checkoutSummary.innerHTML = summaryHTML;
         }
 
-        // --- EVENT LISTENERS ---
+        function addToCart(productId, quantity = 1) {
+            if (cart[productId]) {
+                cart[productId].quantity += quantity;
+            } else {
+                const product = products.find(p => p.id == productId);
+                if (!product) return;
+                cart[productId] = { ...product, quantity: quantity };
+            }
+            updateCartUI();
+        }
+
+        // Cambio de modalidad
+        function handleOrderTypeChange() {
+            orderType = document.querySelector('input[name="orderType"]:checked').value;
+
+            sharedLocation = null;
+            if (locationStatus) locationStatus.textContent = '';
+            if (shareLocationBtn) shareLocationBtn.disabled = (orderType === 'dineIn');
+
+            if (orderType === 'dineIn') {
+                dineInFields.classList.remove('hidden');
+                deliveryFields.classList.add('hidden');
+
+                setInputRequired(tableNumberInput, true);
+                setInputRequired(nameInput, false);
+                setInputRequired(phoneInput, false);
+                setInputRequired(addressInput, false);
+            } else {
+                dineInFields.classList.add('hidden');
+                deliveryFields.classList.remove('hidden');
+
+                setInputRequired(tableNumberInput, false);
+                setInputRequired(nameInput, true);
+                setInputRequired(phoneInput, true);
+                setInputRequired(addressInput, true);
+            }
+        }
+
+        // EVENTOS productos
         productList.addEventListener('click', (e) => {
             const card = e.target.closest('.flex-col');
             if (!card) return;
@@ -389,87 +667,128 @@
                 const id = e.target.dataset.id;
                 const quantity = parseInt(card.querySelector('.quantity-value').textContent);
                 addToCart(id, quantity);
-                showNotification(`${quantity} ${products.find(p=>p.id==id).name}(s) añadido(s) al carrito!`);
+                const product = products.find(p => p.id == id);
+                showNotification(`${quantity} ${product ? product.name : 'producto'}(s) añadido(s) al carrito!`);
                 card.querySelector('.quantity-value').textContent = '1';
             }
         });
-        
+
+        // Vaciar carrito
         clearCartBtn.addEventListener('click', () => {
             cart = {};
             updateCartUI();
+            showNotification('El carrito ha sido vaciado.');
         });
 
+        // Cambio de radio
+        radioDineIn.addEventListener('change', handleOrderTypeChange);
+        radioDelivery.addEventListener('change', handleOrderTypeChange);
+
+        // Geolocalización
+        if (shareLocationBtn) {
+            shareLocationBtn.addEventListener('click', () => {
+                if (!navigator.geolocation) {
+                    locationStatus.textContent = 'Geolocalización no es soportada.';
+                    return;
+                }
+                locationStatus.textContent = 'Obteniendo ubicación...';
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                        locationStatus.textContent = '¡Ubicación compartida!';
+                    },
+                    () => {
+                        locationStatus.textContent = 'No se pudo obtener la ubicación.';
+                    }
+                );
+            });
+        }
+
+        // Enviar pedido
         orderForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const address = document.getElementById('address').value.trim();
 
-            if (!name || !phone || !address) {
-                alert('Por favor, completa todos los campos obligatorios.');
+            if (Object.keys(cart).length === 0) {
+                alert('Tu carrito está vacío. Agrega productos antes de enviar tu pedido.');
                 return;
             }
 
-            let message = `¡Hola VALÚ Chocobananas! 👋 Quisiera hacer el siguiente pedido:\n\n`;
+            const currentOrderType = document.querySelector('input[name="orderType"]:checked').value;
+
+            let message = `¡Hola VALÚ Chocobananas! 🍌✨ Quisiera hacer el siguiente pedido:\n\n`;
             let total = 0;
 
             for (const id in cart) {
                 const item = cart[id];
-                message += `*${item.quantity}x* - ${item.name}\n`;
+                message += `• ${item.quantity}x - ${item.name}\n`;
                 total += item.price * item.quantity;
             }
 
-            message += `\n*Total del Pedido: $${total.toFixed(2)}*\n\n`;
-            message += `*Mis Datos de Entrega:*\n`;
-            message += `*Nombre:* ${name}\n`;
-            message += `*WhatsApp:* ${phone}\n`;
-            message += `*Dirección:* ${address}\n`;
+            message += `\n*Total aproximado: $${total.toFixed(2)}*\n\n`;
 
-            if (sharedLocation) {
-                message += `*Ubicación (Google Maps):* ${sharedLocation}\n`;
+            if (currentOrderType === 'dineIn') {
+                const mesa = (tableNumberInput.value || '').trim();
+                const nombreLocal = (clientNameLocalInput.value || '').trim();
+
+                if (!mesa) {
+                    showNotification('Por favor, ingresa tu número de mesa.');
+                    return;
+                }
+
+                message += `*Modalidad:* Servir en mesa 🍽️\n`;
+                message += `*Mesa:* ${mesa}\n`;
+                if (nombreLocal) {
+                    message += `*Nombre:* ${nombreLocal}\n`;
+                }
+            } else {
+                const name = (nameInput.value || '').trim();
+                const phone = (phoneInput.value || '').trim();
+                const address = (addressInput.value || '').trim();
+
+                if (!name || !phone || !address) {
+                    showNotification('Para domicilio, completa Nombre, WhatsApp y Dirección.');
+                    return;
+                }
+
+                message += `*Modalidad:* Entrega a domicilio 🛵\n`;
+                message += `*Nombre:* ${name}\n`;
+                message += `*WhatsApp:* ${phone}\n`;
+                message += `*Dirección:* ${address}\n`;
+                if (sharedLocation) {
+                    message += `*Ubicación (Google Maps):* ${sharedLocation}\n`;
+                } else {
+                    message += `*Ubicación:* No enviada (puedo enviar luego por chat).\n`;
+                }
             }
-            
-            message += `\n*IMPORTANTE: Para confirmar tu pedido, por favor adjunta tu comprobante de pago aquí en el chat.*`;
+
+            message += `\n*IMPORTANTE:* Para confirmar tu pedido, por favor adjunta tu comprobante de pago aquí en el chat. 💳📸`;
             message += `\n\n¡Espero su confirmación! Gracias. 😊`;
-            
+
             const whatsappNumber = '593983397264';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
             window.open(whatsappUrl, '_blank');
-            
+
             cart = {};
             sharedLocation = null;
             orderForm.reset();
+            handleOrderTypeChange();
             updateCartUI();
             showPage('home');
-            alert('¡Gracias por tu compra! Tu pedido se está procesando.');
+            showNotification('¡Pedido enviado! Revisa tu WhatsApp para la confirmación de VALÚ Chocobananas.');
         });
-        
-        shareLocationBtn.addEventListener('click', () => {
-            if (navigator.geolocation) {
-                locationStatus.textContent = 'Obteniendo ubicación...';
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    sharedLocation = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                    locationStatus.textContent = '¡Ubicación compartida!';
-                }, () => {
-                    locationStatus.textContent = 'No se pudo obtener la ubicación.';
-                });
-            } else {
-                locationStatus.textContent = 'Geolocalización no es soportada.';
-            }
-        });
-        
-        // --- PAGE NAVIGATION ---
+
+        // Navegación entre páginas
         const pages = document.querySelectorAll('main');
         window.showPage = (pageId) => {
             pages.forEach(page => page.classList.add('hidden'));
             document.getElementById(`${pageId}-page`).classList.remove('hidden');
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             if (pageId === 'checkout') updateCheckoutPage();
         };
 
-        // --- NOTIFICATION MODAL ---
+        // Notificación
         function showNotification(message) {
             notificationMessage.textContent = message;
             notificationModal.classList.remove('opacity-0', 'pointer-events-none');
@@ -482,10 +801,150 @@
         }
 
         closeNotificationBtn.addEventListener('click', hideNotification);
+        notificationModal.addEventListener('click', (e) => {
+            if (e.target === notificationModal) hideNotification();
+        });
 
-        // --- INITIAL LOAD ---
+        // Inicializar
         renderProducts();
         updateCartUI();
+        handleOrderTypeChange();
+    });
+    </script>
+
+    <!-- SCRIPT JUEGO DE MEMORIA -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid       = document.getElementById('memory-grid');
+        const movesEl    = document.getElementById('memory-moves');
+        const pairsEl    = document.getElementById('memory-pairs');
+        const totalEl    = document.getElementById('memory-total');
+        const restartBtn = document.getElementById('memory-restart');
+
+        if (!grid) return;
+
+        // Imágenes de chocobananas para las parejas
+        const baseCards = [
+            { id: 1, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp' },
+            { id: 2, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp' },
+            { id: 3, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp' },
+            { id: 4, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp' },
+            { id: 5, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp' },
+            { id: 6, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp' },
+        ]; // 6 parejas → 12 cartas
+
+        let cards = [];
+        let firstCard  = null;
+        let secondCard = null;
+        let lockBoard  = false;
+        let moves      = 0;
+        let pairs      = 0;
+        const totalPairs = baseCards.length;
+
+        totalEl.textContent = totalPairs;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createBoard() {
+            grid.innerHTML = '';
+            cards = shuffle([...baseCards, ...baseCards]); // duplicamos y mezclamos
+
+            cards.forEach((cardData, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.id = cardData.id;
+
+                card.innerHTML = `
+                    <div class="memory-inner">
+                        <div class="memory-face memory-front">
+                            🍌
+                        </div>
+                        <div class="memory-face memory-back">
+                            <img src="${cardData.img}" alt="Chocobanana VALÚ">
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => handleFlip(card));
+                grid.appendChild(card);
+            });
+
+            moves = 0;
+            pairs = 0;
+            movesEl.textContent = moves;
+            pairsEl.textContent = pairs;
+            firstCard = null;
+            secondCard = null;
+            lockBoard = false;
+        }
+
+        function handleFlip(card) {
+            if (lockBoard) return;
+            if (card === firstCard) return;
+
+            const inner = card.querySelector('.memory-inner');
+            if (inner.classList.contains('flipped')) return;
+
+            inner.classList.add('flipped');
+
+            if (!firstCard) {
+                firstCard = card;
+                return;
+            }
+
+            secondCard = card;
+            moves++;
+            movesEl.textContent = moves;
+
+            checkMatch();
+        }
+
+        function checkMatch() {
+            const isMatch = firstCard.dataset.id === secondCard.dataset.id;
+
+            if (isMatch) {
+                disableCards();
+            } else {
+                unflipCards();
+            }
+        }
+
+        function disableCards() {
+            pairs++;
+            pairsEl.textContent = pairs;
+
+            firstCard = null;
+            secondCard = null;
+
+            if (pairs === totalPairs) {
+                // pequeño efecto al ganar
+                setTimeout(() => {
+                    alert(`¡Felicitaciones! Encontraste todas las parejas en ${moves} movimientos 🎉`);
+                }, 300);
+            }
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.querySelector('.memory-inner').classList.remove('flipped');
+                secondCard.querySelector('.memory-inner').classList.remove('flipped');
+                firstCard = null;
+                secondCard = null;
+                lockBoard = false;
+            }, 700);
+        }
+
+        restartBtn.addEventListener('click', createBoard);
+
+        // Inicializar
+        createBoard();
     });
     </script>
 </body>
