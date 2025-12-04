@@ -87,45 +87,9 @@
                          0 0 20px rgba(245, 124, 0, 0.5);
         }
 
-        /* Memory game cards */
-        .memory-card {
-            perspective: 800px;
-        }
-        .memory-inner {
-            position: relative;
-            width: 100%;
-            padding-top: 100%; /* cuadrado */
-            transform-style: preserve-3d;
-            transition: transform 0.4s;
-            cursor: pointer;
-        }
-        .memory-inner.flipped {
-            transform: rotateY(180deg);
-        }
-        .memory-face {
-            position: absolute;
-            inset: 0;
-            backface-visibility: hidden;
+        #tetris-canvas {
+            background: rgba(15, 32, 20, 0.95);
             border-radius: 0.75rem;
-            overflow: hidden;
-        }
-        .memory-front {
-            background: #F57C00;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1.4rem;
-        }
-        .memory-back {
-            transform: rotateY(180deg);
-            background: #fff;
-        }
-        .memory-back img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
         }
     </style>
 </head>
@@ -148,6 +112,7 @@
                      onerror="this.onerror=null;this.src='https://placehold.co/96x96/FFF3E0/3D2B1F?text=V';">
             </a>
             <nav class="hidden md:flex items-center gap-6 font-semibold brand-brown-text">
+                <a href="#navidad-valu" class="hover:text-[#F57C00] transition-colors">Navidad</a>
                 <a href="#productos" class="hover:text-[#F57C00] transition-colors">Productos</a>
                 <a href="#experiencia" class="hover:text-[#F57C00] transition-colors">Experiencia</a>
                 <a href="#puzzle-valu" class="hover:text-[#F57C00] transition-colors">Juega</a>
@@ -163,7 +128,7 @@
 
     <!-- HOME PAGE -->
     <main id="home-page" class="relative z-10">
-        <!-- HERO con foto arriba + dirección visible -->
+        <!-- HERO -->
         <section class="py-12 md:py-16">
             <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
                 <div class="space-y-4 md:space-y-6 text-center md:text-left">
@@ -197,7 +162,99 @@
                 </div>
             </div>
         </section>
+
+        <!-- 🌟 SECCIÓN NAVIDEÑA -->
+        <section id="navidad-valu" class="py-16 bg-red-700/10 border-y border-red-500/20">
+          <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+              <p class="text-xs tracking-[0.3em] uppercase text-brand-orange mb-2 font-semibold">
+                Exclusivo por Navidad 🎅✨
+              </p>
+              <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                Edición Especial Navideña
+              </h2>
+              <p class="text-sm md:text-base text-gray-200 max-w-2xl mx-auto">
+                Chocobombas navideñas listas para regalo 🎁  
+                Sabores, diseño y empaque únicos por temporada.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+              <!-- Producto 1 -->
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                <img 
+                  src="navidad-unidad.webp" 
+                  alt="Chocobomba Navideña Unidad" 
+                  class="w-full h-56 object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Unidad+Navideña';"
+                >
+                <div class="p-6 text-center">
+                  <h3 class="text-xl font-bold brand-brown-text">Chocobomba Navideña (Unidad)</h3>
+                  <p class="text-gray-600 text-sm my-3">
+                    Incluye pirotín, sorbete, masmellos y caja decorativa.
+                  </p>
+                  <p class="text-brand-orange font-bold text-lg mb-4">$2.50</p>
+                  
+                  <button 
+                    class="add-to-cart-btn bg-brand-green text-white w-full py-2 rounded-full font-bold hover:bg-brand-green-dark"
+                    data-id="101">
+                    Añadir al Carrito
+                  </button>
+                </div>
+              </div>
+
+              <!-- Producto 2 -->
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                <img 
+                  src="navidad-caja4.webp" 
+                  alt="Caja Navideña x4" 
+                  class="w-full h-56 object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Caja+4+Navidad';"
+                >
+                <div class="p-6 text-center">
+                  <h3 class="text-xl font-bold brand-brown-text">Caja Navideña (x4)</h3>
+                  <p class="text-gray-600 text-sm my-3">
+                    Contiene 4 chocobombas, pirotines, sorbetes y caja decorativa.
+                  </p>
+                  <p class="text-brand-orange font-bold text-lg mb-4">$7.50</p>
+                  
+                  <button 
+                    class="add-to-cart-btn bg-brand-green text-white w-full py-2 rounded-full font-bold hover:bg-brand-green-dark"
+                    data-id="102">
+                    Añadir al Carrito
+                  </button>
+                </div>
+              </div>
+
+              <!-- Producto 3 -->
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                <img 
+                  src="navidad-esferas5.webp" 
+                  alt="Esferas Navideñas x5" 
+                  class="w-full h-56 object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFF3E0/3D2B1F?text=Esferas+Navidad';"
+                >
+                <div class="p-6 text-center">
+                  <h3 class="text-xl font-bold brand-brown-text">Esferas Navideñas (x5)</h3>
+                  <p class="text-gray-600 text-sm my-3">
+                    Incluye 5 chocobombas, pirotines, sorbetes y esfera decorativa.
+                  </p>
+                  <p class="text-brand-orange font-bold text-lg mb-4">$9.50</p>
+                  
+                  <button 
+                    class="add-to-cart-btn bg-brand-green text-white w-full py-2 rounded-full font-bold hover:bg-brand-green-dark"
+                    data-id="103">
+                    Añadir al Carrito
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
         
+        <!-- PRODUCTOS NORMALES -->
         <section id="productos" class="py-16">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold mb-12 text-center text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">Nuestros Sabores</h2>
@@ -233,38 +290,42 @@
                         Encuentra las parejas de Chocobananas 🍌🧠
                     </h2>
                     <p class="text-sm md:text-base text-gray-200 max-w-2xl mx-auto">
-                        Toca las cartas, memoriza las Chocobananas y forma todas las parejas en el menor número de movimientos.
+                        Da vuelta las tarjetas y encuentra las parejas antes que se te derritan las ideas 😋  
+                        Perfecto para jugar mientras esperas tu pedido.
                     </p>
                 </div>
 
-                <div class="max-w-md mx-auto bg-white/95 rounded-3xl shadow-2xl p-5 md:p-6">
-                    <div class="flex items-center justify-between gap-4 text-xs md:text-sm text-gray-700 mb-3">
+                <div class="max-w-md mx-auto bg-white/95 rounded-3xl shadow-2xl p-5 md:p-6 flex flex-col items-center">
+                    <div class="flex items-center justify-between w-full text-xs md:text-sm text-gray-700 mb-4">
                         <span class="flex items-center gap-2">
-                            <i class="fa-solid fa-hand-pointer text-brand-orange"></i>
-                            Movimientos: <span id="memory-moves">0</span>
+                            <i class="fa-solid fa-brain text-brand-orange"></i>
+                            Movimientos: <span id="memory-moves" class="font-bold">0</span>
                         </span>
                         <span class="flex items-center gap-2">
                             <i class="fa-solid fa-check-double text-brand-green"></i>
-                            Parejas: <span id="memory-pairs">0</span>/<span id="memory-total">0</span>
+                            Parejas: <span id="memory-found" class="font-bold">0</span>/8
                         </span>
-                        <button id="memory-restart" type="button"
-                                class="px-4 py-2 bg-brand-orange text-white rounded-full text-xs md:text-sm font-semibold flex items-center gap-2 hover:bg-brand-orange-dark transition">
-                            <i class="fa-solid fa-rotate-right"></i> Nuevo juego
-                        </button>
                     </div>
 
-                    <div id="memory-grid" class="grid grid-cols-4 gap-2 mt-3"></div>
+                    <div id="memory-grid" class="grid grid-cols-4 gap-3 w-full mb-4">
+                        <!-- Tarjetas del juego -->
+                    </div>
+
+                    <button id="memory-restart" type="button"
+                            class="px-4 py-2 bg-brand-orange text-white rounded-full text-xs md:text-sm font-semibold flex items-center gap-2 hover:bg-brand-orange-dark transition">
+                        <i class="fa-solid fa-rotate-right"></i> Reiniciar juego
+                    </button>
 
                     <p class="text-[10px] md:text-xs text-gray-600 text-center mt-3">
-                        En celular: toca una carta, recuerda la Chocobanana y encuentra su pareja.  
-                        Perfecto para jugar mientras esperas tu orden 😋
+                        Toca una tarjeta para revelar la chocobanana.  
+                        Encuentra las parejas con el menor número de movimientos posible.
                     </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- CHECKOUT PAGE (CON MESA / DOMICILIO) -->
+    <!-- CHECKOUT PAGE -->
     <main id="checkout-page" class="hidden relative z-10 py-16">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl text-center text-white glossy-text mb-12">Finalizar Pedido</h2>
@@ -426,6 +487,7 @@
             </div>
         </div>
     </main>
+
     <footer id="footer-contact" class="bg-gray-900/80 text-gray-300 pt-12 pb-8 mt-16 border-t border-white/10 relative z-10">
         <div class="container mx-auto px-6 text-center">
              <div class="grid md:grid-cols-3 gap-8">
@@ -460,25 +522,21 @@
             </div>
         </div>
     </footer>
+
+    <!-- Sello CL Tech Solutions -->
+    <div class="mt-10 mb-6 flex justify-center">
+      <a href="https://cltechsolutions.crisslombeida.com/" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00F5FF] text-slate-900 font-extrabold text-xs md:text-sm tracking-wide shadow-[0_0_18px_rgba(0,245,255,0.9)] hover:shadow-[0_0_28px_rgba(0,245,255,1)] hover:scale-105 transition-transform duration-200 animate-pulse">
+        <span class="text-lg">⚡</span>
+        <span>
+          Página de ventas elaborada por 
+          <span class="uppercase">CL Tech Solutions</span> — Clic aquí
+        </span>
+      </a>
+    </div>
     
-        <!-- Sello CL Tech Solutions -->
-        <div class="mt-10 flex justify-center">
-            <a href="https://cltechsolutions.crisslombeida.com/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                      bg-[#00F5FF] text-slate-900 font-extrabold text-xs md:text-sm
-                      tracking-wide shadow-[0_0_18px_rgba(0,245,255,0.9)]
-                      hover:shadow-[0_0_28px_rgba(0,245,255,1)]
-                      hover:scale-105 transition-transform duration-200
-                      animate-pulse">
-                <span class="text-lg">⚡</span>
-                <span>
-                    Página de ventas elaborada por
-                    <span class="uppercase">CL Tech Solutions</span> — Clic aquí
-                </span>
-            </a>
-        </div>
     <!-- Confirmation Modal -->
     <div id="notification-modal" class="fixed inset-0 bg-black/60 z-[1002] flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
         <div class="bg-white rounded-xl p-8 text-center shadow-2xl max-w-sm transform scale-95 transition-transform duration-300">
@@ -488,30 +546,32 @@
         </div>
     </div>
 
+    <!-- SCRIPT PRINCIPAL (productos + carrito) -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const products = [
-            // $1.00
+            // NAVIDEÑOS
+            { id: 101, name: 'Chocobomba Navideña Unidad', price: 2.50, img: 'navidad-unidad.webp', desc: 'Chocobomba con caja decorativa, pirotín, sorbete y masmellos. Edición especial.' },
+            { id: 102, name: 'Caja Navideña (x4)', price: 7.50, img: 'navidad-caja4.webp', desc: 'Caja navideña con 4 chocobombas, pirotines y sorbetes. Edición limitada.' },
+            { id: 103, name: 'Esferas Navideñas (x5)', price: 9.50, img: 'navidad-esferas5.webp', desc: 'Esfera decorativa con 5 chocobombas, pirotines y sorbetes. Ideal para regalo.' },
+
+            // NORMALES
             { id: 1, name: 'Clasica Negra', price: 1.00, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp', desc: 'Nuestra clásica Chocobanana bañada en doble capa de chocolate negro intenso.' },
-            // $1.00
             { id: 2, name: 'Clasica Blanca', price: 1.00, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp', desc: 'Nuestra clásica banana cubierta de chocolate blanco cremoso, suave y delicioso, ideal para quienes aman lo dulce y delicado' },
-            // $1.25
             { id: 3, name: 'Galleta Tángo', price: 1.25, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp', desc: 'Banana cubierta con chocolate negro, y topping de galleta tango con crema de vainilla triturada, una combinación irresistible' },
-            { id: 4, name: 'Chile CH. Negro', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de gicle al final' },
+            { id: 4, name: 'Chile CH. Negro', price: 1.25, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp', desc: 'Banana bañada en chocolate negro, decorada con palitos dulces turquesa, grageas crujientes, coronada con una bolita de chicle al final' },
             { id: 5, name: 'Chicle CH. Turquesa', price: 1.25, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp', desc: 'Banana cubierta con chocolate turquesa con una bolita de chicle al final' },
-            { id: 6, name: 'Galleta Oreo', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Banana bañada en chocolate, cubierta con crujientes galletas oreo. Dulce, crujiente y deliciosa que te hará caer en la tentación.”' },
+            { id: 6, name: 'Galleta Oreo', price: 1.25, img: 'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp', desc: 'Banana bañada en chocolate, cubierta con crujientes galletas oreo. Dulce, crujiente y deliciosa que te hará caer en la tentación.' },
             { id: 7, name: 'Valú Fresa', price: 1.25, img: 'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp', desc: 'Nuestra Chocobanana bañada en chocolate rojo, con auténtico sabor a fresa. Dulzura y frescura en perfecta armonía.' },
-            { id: 8, name: 'Maní', price: 1.25, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'banana bañada en chocolate negro y cubierta con maní triturado ligeramente salado.' },
+            { id: 8, name: 'Maní', price: 1.25, img: 'https://i.postimg.cc/VL69mcPx/IMG-20250809-165122-573-2-removebg-preview.webp', desc: 'Banana bañada en chocolate negro y cubierta con maní triturado ligeramente salado.' },
             { id: 9, name: 'Grajeas', price: 1.25, img: 'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp', desc: 'Banana bañada en chocolate negro y cubierta con crujientes grageas anisadas de colores. Dulce, divertida y llena de sabor.' },
             { id: 10, name: 'Valú Tropi coco', price: 1.25, img: 'https://i.postimg.cc/CMJc3QV7/1000670548-removebg-preview.webp', desc: 'Banana cubierta con chocolate negro y un baño extremo de coco seco rallado' },
             { id: 11, name: 'Valú pops', price: 1.25, img: 'https://i.postimg.cc/gjr3F4vt/1000670559-removebg-preview.webp', desc: 'Es la mezcla perfecta del chocolate blanco con caramelos en polvo que explotan tu boca' },
-            // $1.50
             { id: 12, name: 'Chin Chin', price: 1.50, img: 'https://i.postimg.cc/nrdvB3BS/1000670562-removebg-preview.webp', desc: 'Banana bañada en chocolate negro con crujientes lentejas de colores, una explosión de color y sabor que te encantará' },
-            { id: 13, name: 'Valú Mixta', price: 1.50, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'Banana bañada en chocolate verde, con crujientes trozos de Oreo y un toque fresco de menta. ¡Refrescante, dulce y divertida, que te dejará congelado' },
+            { id: 13, name: 'Valú Mixta', price: 1.50, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp', desc: 'Banana bañada en chocolate verde, con crujientes trozos de Oreo y un toque fresco de menta.' },
             { id: 14, name: 'Valú black&white', price: 1.50, img: 'https://i.postimg.cc/BnRBm7yd/1000670554-removebg-preview.webp', desc: 'Banana cubierta con chocolate blanco y trozos crocantes de galleta oreo' },
-            // $2.50
-            { id: 15, name: 'Rellena de Coctel de Café', price: 2.50, img: 'https://i.postimg.cc/9Qq5FhmC/1000670556-removebg-preview-1.webp', desc: 'Banana bañada en chocolate, rellena con exquisito cóctel de café y acompañada de crujientes nibs de café. Dulce, cremoso y sofisticado, ideal para los amantes del café y el chocolate' },
-            { id: 16, name: 'Rellena de manjar y almendras', price: 2.50, img: 'https://i.postimg.cc/tgtcYRLQ/1000670558-removebg-preview.webp', desc: 'banana bañada en chocolate y rellena con cremoso manjar y trozos de almendra. Dulce, crujiente y sofisticada, una experiencia irresistible para los paladares más exigentes.' },
+            { id: 15, name: 'Rellena de Coctel de Café', price: 2.50, img: 'https://i.postimg.cc/9Qq5FhmC/1000670556-removebg-preview-1.webp', desc: 'Banana bañada en chocolate, rellena con exquisito cóctel de café y acompañada de crujientes nibs de café.' },
+            { id: 16, name: 'Rellena de manjar y almendras', price: 2.50, img: 'https://i.postimg.cc/tgtcYRLQ/1000670558-removebg-preview.webp', desc: 'Banana bañada en chocolate y rellena con cremoso manjar y trozos de almendra.' },
         ];
 
         // DOM Elements
@@ -544,17 +604,18 @@
         let sharedLocation = null;
         let orderType = 'dineIn';
 
-        // Helpers
         function setInputRequired(input, isRequired) {
             if (!input) return;
             input.required = isRequired;
             input.disabled = !isRequired;
         }
 
-        // RENDER de productos (manteniendo diseño VALÚ)
+        // RENDER de productos
         function renderProducts() {
             productList.innerHTML = '';
-            products.forEach(product => {
+            // dejamos fuera los navideños para que solo aparezcan en sección navidad
+            const normalProducts = products.filter(p => p.id < 100);
+            normalProducts.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'bg-white rounded-xl text-center overflow-hidden flex flex-col shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 hover:-translate-y-2';
                 card.innerHTML = `
@@ -630,17 +691,17 @@
         }
 
         function addToCart(productId, quantity = 1) {
+            const product = products.find(p => p.id == productId);
+            if (!product) return;
+
             if (cart[productId]) {
                 cart[productId].quantity += quantity;
             } else {
-                const product = products.find(p => p.id == productId);
-                if (!product) return;
                 cart[productId] = { ...product, quantity: quantity };
             }
             updateCartUI();
         }
 
-        // Cambio de modalidad
         function handleOrderTypeChange() {
             orderType = document.querySelector('input[name="orderType"]:checked').value;
 
@@ -667,13 +728,13 @@
             }
         }
 
-        // EVENTOS productos
-        productList.addEventListener('click', (e) => {
-            const card = e.target.closest('.flex-col');
-            if (!card) return;
-
-            if (e.target.classList.contains('quantity-btn')) {
+        // EVENTOS productos (lista principal + navidad)
+        document.body.addEventListener('click', (e) => {
+            // botones dentro de cards
+            const card = e.target.closest('.flex.flex-col') || e.target.closest('.bg-white.rounded-xl');
+            if (card && e.target.classList.contains('quantity-btn')) {
                 const valueSpan = card.querySelector('.quantity-value');
+                if (!valueSpan) return;
                 let currentValue = parseInt(valueSpan.textContent);
                 if (e.target.classList.contains('plus-btn')) currentValue++;
                 else if (e.target.classList.contains('minus-btn') && currentValue > 1) currentValue--;
@@ -682,11 +743,14 @@
 
             if (e.target.classList.contains('add-to-cart-btn')) {
                 const id = e.target.dataset.id;
-                const quantity = parseInt(card.querySelector('.quantity-value').textContent);
+                let quantity = 1;
+                const qSpan = card ? card.querySelector('.quantity-value') : null;
+                if (qSpan) quantity = parseInt(qSpan.textContent) || 1;
+
                 addToCart(id, quantity);
                 const product = products.find(p => p.id == id);
                 showNotification(`${quantity} ${product ? product.name : 'producto'}(s) añadido(s) al carrito!`);
-                card.querySelector('.quantity-value').textContent = '1';
+                if (qSpan) qSpan.textContent = '1';
             }
         });
 
@@ -832,136 +896,138 @@
     <!-- SCRIPT JUEGO DE MEMORIA -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const grid       = document.getElementById('memory-grid');
-        const movesEl    = document.getElementById('memory-moves');
-        const pairsEl    = document.getElementById('memory-pairs');
-        const totalEl    = document.getElementById('memory-total');
-        const restartBtn = document.getElementById('memory-restart');
+      const memoryGrid   = document.getElementById('memory-grid');
+      const movesEl      = document.getElementById('memory-moves');
+      const foundEl      = document.getElementById('memory-found');
+      const restartBtn   = document.getElementById('memory-restart');
 
-        if (!grid) return;
+      if (!memoryGrid) return;
 
-        // Imágenes de chocobananas para las parejas
-        const baseCards = [
-            { id: 1, img: 'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp' },
-            { id: 2, img: 'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp' },
-            { id: 3, img: 'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp' },
-            { id: 4, img: 'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp' },
-            { id: 5, img: 'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp' },
-            { id: 6, img: 'https://i.postimg.cc/wBJcZcY3/1000670551-removebg-preview.webp' },
-        ]; // 6 parejas → 12 cartas
+      const icons = [
+        'https://i.postimg.cc/xdfT7hRY/IMG_20250809_164333_148_2-removebg-preview.webp',
+        'https://i.postimg.cc/Hkrt41Sw/1000670553-removebg-preview.webp',
+        'https://i.postimg.cc/vBrgL0FL/1000670549-removebg-preview-1.webp',
+        'https://i.postimg.cc/Kz2r2kmf/1000670552-removebg-preview.webp',
+        'https://i.postimg.cc/76n1YH6k/1000670555-removebg-preview.webp',
+        'https://i.postimg.cc/rygGBw3G/IMG-20250809-170227-751-2-removebg-preview.webp',
+        'https://i.postimg.cc/j2qHDpwJ/1000670557-removebg-preview.webp',
+        'https://i.postimg.cc/VLVqNHYd/IMG-20250809-171929-053-2-removebg-preview.webp'
+      ];
 
-        let cards = [];
-        let firstCard  = null;
-        let secondCard = null;
-        let lockBoard  = false;
-        let moves      = 0;
-        let pairs      = 0;
-        const totalPairs = baseCards.length;
+      let cards = [];
+      let first = null;
+      let second = null;
+      let lock = false;
+      let moves = 0;
+      let found = 0;
 
-        totalEl.textContent = totalPairs;
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
+      function createBoard() {
+        memoryGrid.innerHTML = '';
+        moves = 0;
+        found = 0;
+        movesEl.textContent = '0';
+        foundEl.textContent = '0';
+        first = null;
+        second = null;
+        lock = false;
+
+        const pairIcons = shuffle([...icons, ...icons]); // 16 cartas
+
+        pairIcons.forEach((src, index) => {
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'relative aspect-square rounded-xl bg-emerald-800/90 flex items-center justify-center overflow-hidden shadow-md transform transition-transform duration-200';
+          card.dataset.index = index;
+          card.dataset.src = src;
+          card.dataset.flipped = 'false';
+          card.dataset.matched = 'false';
+
+          card.innerHTML = `
+            <div class="absolute inset-0 bg-emerald-600 flex items-center justify-center">
+              <span class="text-white text-2xl">🍌</span>
+            </div>
+            <img src="${src}" alt="Chocobanana" class="w-full h-full object-cover opacity-0 transition-opacity duration-200" />
+          `;
+
+          card.addEventListener('click', () => handleFlip(card));
+          memoryGrid.appendChild(card);
+        });
+
+        cards = Array.from(memoryGrid.children);
+      }
+
+      function handleFlip(card) {
+        if (lock) return;
+        if (card.dataset.flipped === 'true' || card.dataset.matched === 'true') return;
+
+        flipCard(card);
+
+        if (!first) {
+          first = card;
+          return;
         }
 
-        function createBoard() {
-            grid.innerHTML = '';
-            cards = shuffle([...baseCards, ...baseCards]); // duplicamos y mezclamos
+        second = card;
+        lock = true;
+        moves++;
+        movesEl.textContent = moves;
 
-            cards.forEach((cardData, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.id = cardData.id;
+        if (first.dataset.src === second.dataset.src) {
+          first.dataset.matched = 'true';
+          second.dataset.matched = 'true';
+          found++;
+          foundEl.textContent = found;
+          resetTurn();
 
-                card.innerHTML = `
-                    <div class="memory-inner">
-                        <div class="memory-face memory-front">
-                            🍌
-                        </div>
-                        <div class="memory-face memory-back">
-                            <img src="${cardData.img}" alt="Chocobanana VALÚ">
-                        </div>
-                    </div>
-                `;
-
-                card.addEventListener('click', () => handleFlip(card));
-                grid.appendChild(card);
-            });
-
-            moves = 0;
-            pairs = 0;
-            movesEl.textContent = moves;
-            pairsEl.textContent = pairs;
-            firstCard = null;
-            secondCard = null;
-            lockBoard = false;
-        }
-
-        function handleFlip(card) {
-            if (lockBoard) return;
-            if (card === firstCard) return;
-
-            const inner = card.querySelector('.memory-inner');
-            if (inner.classList.contains('flipped')) return;
-
-            inner.classList.add('flipped');
-
-            if (!firstCard) {
-                firstCard = card;
-                return;
-            }
-
-            secondCard = card;
-            moves++;
-            movesEl.textContent = moves;
-
-            checkMatch();
-        }
-
-        function checkMatch() {
-            const isMatch = firstCard.dataset.id === secondCard.dataset.id;
-
-            if (isMatch) {
-                disableCards();
-            } else {
-                unflipCards();
-            }
-        }
-
-        function disableCards() {
-            pairs++;
-            pairsEl.textContent = pairs;
-
-            firstCard = null;
-            secondCard = null;
-
-            if (pairs === totalPairs) {
-                // pequeño efecto al ganar
-                setTimeout(() => {
-                    alert(`¡Felicitaciones! Encontraste todas las parejas en ${moves} movimientos 🎉`);
-                }, 300);
-            }
-        }
-
-        function unflipCards() {
-            lockBoard = true;
+          if (found === 8) {
+            // pequeño efecto
             setTimeout(() => {
-                firstCard.querySelector('.memory-inner').classList.remove('flipped');
-                secondCard.querySelector('.memory-inner').classList.remove('flipped');
-                firstCard = null;
-                secondCard = null;
-                lockBoard = false;
-            }, 700);
+              alert('¡Bravo! Encontraste todas las parejas de chocobananas 🎉');
+            }, 300);
+          }
+        } else {
+          setTimeout(() => {
+            unflipCard(first);
+            unflipCard(second);
+            resetTurn();
+          }, 700);
         }
+      }
 
-        restartBtn.addEventListener('click', createBoard);
+      function flipCard(card) {
+        card.dataset.flipped = 'true';
+        const cover = card.children[0];
+        const img   = card.children[1];
+        cover.classList.add('opacity-0');
+        cover.classList.add('scale-90');
+        img.classList.remove('opacity-0');
+      }
 
-        // Inicializar
-        createBoard();
+      function unflipCard(card) {
+        card.dataset.flipped = 'false';
+        const cover = card.children[0];
+        const img   = card.children[1];
+        cover.classList.remove('opacity-0');
+        cover.classList.remove('scale-90');
+        img.classList.add('opacity-0');
+      }
+
+      function resetTurn() {
+        [first, second] = [null, null];
+        lock = false;
+      }
+
+      restartBtn.addEventListener('click', createBoard);
+
+      createBoard();
     });
     </script>
 </body>
